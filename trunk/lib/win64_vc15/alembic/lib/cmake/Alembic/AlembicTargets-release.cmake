@@ -9,7 +9,7 @@ set(CMAKE_IMPORT_FILE_VERSION 1)
 set_property(TARGET Alembic::Alembic APPEND PROPERTY IMPORTED_CONFIGURATIONS RELEASE)
 set_target_properties(Alembic::Alembic PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX"
-  IMPORTED_LINK_INTERFACE_LIBRARIES_RELEASE "E:/db15/build/S/VS1564R/Release/openexr/lib/Imath_s.lib;E:/db15/build/S/VS1564R/Release/openexr/lib/IlmThread_s.lib;E:/db15/build/S/VS1564R/Release/openexr/lib/Iex_s.lib;E:/db15/build/S/VS1564R/Release/openexr/lib/IexMath_s.lib;E:/db15/build/S/VS1564R/Release/openexr/lib/Half_s.lib"
+  IMPORTED_LINK_INTERFACE_LIBRARIES_RELEASE "E:/db16/build/S/VS1564R/Release/openexr/lib/Imath_s.lib;E:/db16/build/S/VS1564R/Release/openexr/lib/IlmThread_s.lib;E:/db16/build/S/VS1564R/Release/openexr/lib/Iex_s.lib;E:/db16/build/S/VS1564R/Release/openexr/lib/Half_s.lib;E:/db16/build/S/VS1564R/Release/zlib/lib/zlibstatic.lib"
   IMPORTED_LOCATION_RELEASE "${_IMPORT_PREFIX}/lib/Alembic.lib"
   )
 
