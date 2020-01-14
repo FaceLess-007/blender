@@ -189,7 +189,7 @@ ARCH_PRAGMA_MACRO_TOO_FEW_ARGUMENTS
 /// Exapnds to 1 if the argument is a tuple, and 0 otherwise.
 /// \ingroup group_tf_Preprocessor
 /// \hideinitializer
-#if defined(ARCH_OS_WINDOWS)
+#if defined(ARCH_COMPILER_MSVC)
     #define TF_PP_IS_TUPLE(sequence) \
         BOOST_VMD_IS_TUPLE(sequence)
 #else
