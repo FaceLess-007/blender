@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.oso
 shader mx_swizzle_color4_color4	%meta{string,help,"Perform an arbitrary permutation of the channels of the input stream"} 
 param	struct color4	in			%read{2147483647,-1} %write{2147483647,-1} %struct{"color4"} %structfields{rgb,a} %structfieldtypes{"cf"} %structnfields{2}
 param	color	in.rgb	0 0 0		%read{0,4} %write{2147483647,-1} %mystruct{in} %mystructfield{0}
@@ -62,36 +62,36 @@ temp	float	$tmp29	%read{60,60} %write{57,57}
 temp	float	$tmp30	%read{60,60} %write{58,58}
 temp	float	$tmp31	%read{60,60} %write{59,59}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.osl:20
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.osl:20
 #     inF[0] = in.rgb[0];
-	compref		$tmp1 in.rgb $const1 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.osl"} %line{20} %argrw{"wrr"}
+	compref		$tmp1 in.rgb $const1 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.osl"} %line{20} %argrw{"wrr"}
 	aassign		inF $const1 $tmp1 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.osl:21
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.osl:21
 #     inF[1] = in.rgb[1];
 	compref		$tmp2 in.rgb $const2 	%line{21} %argrw{"wrr"}
 	aassign		inF $const2 $tmp2 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.osl:22
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.osl:22
 #     inF[2] = in.rgb[2];
 	compref		$tmp3 in.rgb $const3 	%line{22} %argrw{"wrr"}
 	aassign		inF $const3 $tmp3 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.osl:23
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.osl:23
 #     inF[3] = in.a;
 	aassign		inF $const4 in.a 	%line{23} %argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.osl:25
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_swizzle_color4_color4.osl:25
 #     out = swizzle_color4(inF, channels);
 	functioncall	$const5 66 	%line{25} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:533
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:533
 #     int c_len = strlen(channels);
-	strlen		___561_c_len channels 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{533} %argrw{"wr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:535
+	strlen		___561_c_len channels 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{533} %argrw{"wr"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:535
 #     for (int i=0; i<c_len; i++) {
 	for		$tmp4 11 12 55 57 	%line{535} %argrw{"r"}
 	assign		___562_i $const1 	%argrw{"wr"}
 	lt		$tmp4 ___562_i ___561_c_len 	%argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:536
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:536
 #         string ch = substr(channels, i, 1);
 	substr		___563_ch channels ___562_i $const2 	%line{536} %argrw{"wrrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:537
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:537
 #         if (ch == "r" || ch == "x")
 	eq		$tmp5 ___563_ch $const6 	%line{537} %argrw{"wrr"}
 	neq		$tmp6 $tmp5 $const1 	%argrw{"wrr"}
@@ -100,11 +100,11 @@ code ___main___
 	neq		$tmp8 $tmp7 $const1 	%argrw{"wrr"}
 	assign		$tmp6 $tmp8 	%argrw{"wr"}
 	if		$tmp6 22 55 	%argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:538
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:538
 #             outF[i] = in[0];
 	aref		$tmp9 inF $const1 	%line{538} %argrw{"wrr"}
 	aassign		___561_outF ___562_i $tmp9 	%argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:539
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:539
 #         else if (ch == "g" || ch == "y")
 	eq		$tmp10 ___563_ch $const8 	%line{539} %argrw{"wrr"}
 	neq		$tmp11 $tmp10 $const1 	%argrw{"wrr"}
@@ -113,11 +113,11 @@ code ___main___
 	neq		$tmp13 $tmp12 $const1 	%argrw{"wrr"}
 	assign		$tmp11 $tmp13 	%argrw{"wr"}
 	if		$tmp11 31 55 	%argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:540
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:540
 #             outF[i] = in[1];
 	aref		$tmp14 inF $const2 	%line{540} %argrw{"wrr"}
 	aassign		___561_outF ___562_i $tmp14 	%argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:541
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:541
 #         else if (ch == "b" || ch == "z")
 	eq		$tmp15 ___563_ch $const10 	%line{541} %argrw{"wrr"}
 	neq		$tmp16 $tmp15 $const1 	%argrw{"wrr"}
@@ -126,11 +126,11 @@ code ___main___
 	neq		$tmp18 $tmp17 $const1 	%argrw{"wrr"}
 	assign		$tmp16 $tmp18 	%argrw{"wr"}
 	if		$tmp16 40 55 	%argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:542
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:542
 #             outF[i] = in[2];
 	aref		$tmp19 inF $const3 	%line{542} %argrw{"wrr"}
 	aassign		___561_outF ___562_i $tmp19 	%argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:543
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:543
 #         else if (ch == "a" || ch == "w")
 	eq		$tmp20 ___563_ch $const12 	%line{543} %argrw{"wrr"}
 	neq		$tmp21 $tmp20 $const1 	%argrw{"wrr"}
@@ -139,38 +139,38 @@ code ___main___
 	neq		$tmp23 $tmp22 $const1 	%argrw{"wrr"}
 	assign		$tmp21 $tmp23 	%argrw{"wr"}
 	if		$tmp21 49 55 	%argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:544
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:544
 #             outF[i] = in[3];
 	aref		$tmp24 inF $const4 	%line{544} %argrw{"wrr"}
 	aassign		___561_outF ___562_i $tmp24 	%argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:545
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:545
 #         else if(ch == "1")
 	eq		$tmp25 ___563_ch $const14 	%line{545} %argrw{"wrr"}
 	if		$tmp25 53 55 	%argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:546
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:546
 #             outF[i] = 1;
 	assign		$tmp26 $const2 	%line{546} %argrw{"wr"}
 	aassign		___561_outF ___562_i $tmp26 	%argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:548
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:548
 #             outF[i] = 0;
 	assign		$tmp27 $const1 	%line{548} %argrw{"wr"}
 	aassign		___561_outF ___562_i $tmp27 	%argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:535
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:535
 #     for (int i=0; i<c_len; i++) {
 	assign		$tmp28 ___562_i 	%line{535} %argrw{"wr"}
 	add		___562_i ___562_i $const2 	%argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:550
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:550
 #     out.rgb = color(outF[0],outF[1],outF[2]);
 	aref		$tmp29 ___561_outF $const1 	%line{550} %argrw{"wrr"}
 	aref		$tmp30 ___561_outF $const2 	%argrw{"wrr"}
 	aref		$tmp31 ___561_outF $const3 	%argrw{"wrr"}
 	color		___561_out.rgb $tmp29 $tmp30 $tmp31 	%argrw{"wrrr"}
 	assign		___561_out.rgb ___561_out.rgb 	%argrw{"wr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:551
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:551
 #     out.a = outF[3];
 	aref		___561_out.a ___561_outF $const4 	%line{551} %argrw{"wrr"}
 	assign		___561_out.a ___561_out.a 	%argrw{"wr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:553
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:553
 #     return out;
 	assign		out.rgb ___561_out.rgb 	%line{553} %argrw{"wr"}
 	assign		out.a ___561_out.a 	%argrw{"wr"}

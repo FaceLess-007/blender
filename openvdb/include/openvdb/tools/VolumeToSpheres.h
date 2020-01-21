@@ -1,32 +1,5 @@
-///////////////////////////////////////////////////////////////////////////
-//
-// Copyright (c) 2012-2018 DreamWorks Animation LLC
-//
-// All rights reserved. This software is distributed under the
-// Mozilla Public License 2.0 ( http://www.mozilla.org/MPL/2.0/ )
-//
-// Redistributions of source code must retain the above copyright
-// and license notice and the following restrictions and disclaimer.
-//
-// *     Neither the name of DreamWorks Animation nor the names of
-// its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL,
-// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// IN NO EVENT SHALL THE COPYRIGHT HOLDERS' AND CONTRIBUTORS' AGGREGATE
-// LIABILITY FOR ALL CLAIMS REGARDLESS OF THEIR BASIS EXCEED US$250.00.
-//
-///////////////////////////////////////////////////////////////////////////
+// Copyright Contributors to the OpenVDB Project
+// SPDX-License-Identifier: MPL-2.0
 
 /// @file tools/VolumeToSpheres.h
 ///
@@ -36,14 +9,15 @@
 #define OPENVDB_TOOLS_VOLUME_TO_SPHERES_HAS_BEEN_INCLUDED
 
 #include <openvdb/tree/LeafManager.h>
+#include <openvdb/math/Math.h>
 #include "Morphology.h" // for erodeVoxels()
 #include "PointScatter.h"
+#include "LevelSetRebuild.h"
 #include "LevelSetUtil.h"
 #include "VolumeToMesh.h"
 
 #include <boost/mpl/at.hpp>
 #include <boost/mpl/int.hpp>
-#include <boost/scoped_array.hpp>
 #include <tbb/blocked_range.h>
 #include <tbb/parallel_for.h>
 #include <tbb/parallel_reduce.h>
@@ -69,9 +43,10 @@ namespace tools {
 ///                         The first three components of each tuple specify the sphere center,
 ///                         and the fourth specifies the radius.
 ///                         The spheres are ordered by radius, from largest to smallest.
-/// @param maxSphereCount   no more than this number of spheres are generated
+/// @param sphereCount      lower and upper bounds on the number of spheres to be generated<BR>
+///                         The actual number will be somewhere within the bounds.
 /// @param overlapping      toggle to allow spheres to overlap/intersect
-/// @param minRadius        the smallest allowable sphere size, in voxel units
+/// @param minRadius        the smallest allowable sphere size, in voxel units<BR>
 /// @param maxRadius        the largest allowable sphere size, in voxel units
 /// @param isovalue         the voxel value that determines the surface of the volume<BR>
 ///                         The default value of zero works for signed distance fields,
@@ -81,7 +56,25 @@ namespace tools {
 ///                         Increasing this count increases the chances of finding optimal
 ///                         sphere sizes.
 /// @param interrupter      pointer to an object adhering to the util::NullInterrupter interface
+///
+/// @note The minimum sphere count takes precedence over the minimum radius.
 template<typename GridT, typename InterrupterT = util::NullInterrupter>
+inline void
+fillWithSpheres(
+    const GridT& grid,
+    std::vector<openvdb::Vec4s>& spheres,
+    const Vec2i& sphereCount = Vec2i(1, 50),
+    bool overlapping = false,
+    float minRadius = 1.0,
+    float maxRadius = std::numeric_limits<float>::max(),
+    float isovalue = 0.0,
+    int instanceCount = 10000,
+    InterrupterT* interrupter = nullptr);
+
+
+/// @deprecated Use the @a sphereCount overload instead.
+template<typename GridT, typename InterrupterT = util::NullInterrupter>
+OPENVDB_DEPRECATED
 inline void
 fillWithSpheres(
     const GridT& grid,
@@ -258,7 +251,7 @@ LeafOp<Index32LeafT>::operator()(const tbb::blocked_range<size_t>& range) const
         sphere[0] = avg[0];
         sphere[1] = avg[1];
         sphere[2] = avg[2];
-        sphere[3] = std::sqrt(maxDist);
+        sphere[3] = maxDist * 2.0; // padded radius
     }
 }
 
@@ -330,8 +323,9 @@ NodeOp::operator()(const tbb::blocked_range<size_t>& range) const
             pos[0] = mLeafBoundingSpheres[i][0];
             pos[1] = mLeafBoundingSpheres[i][1];
             pos[2] = mLeafBoundingSpheres[i][2];
+            const auto radiusSqr = mLeafBoundingSpheres[i][3];
 
-            double tmpDist = (pos - avg).length() + mLeafBoundingSpheres[i][3];
+            double tmpDist = (pos - avg).lengthSqr() + radiusSqr;
             if (tmpDist > maxDist) maxDist = tmpDist;
         }
 
@@ -340,7 +334,7 @@ NodeOp::operator()(const tbb::blocked_range<size_t>& range) const
         sphere[0] = avg[0];
         sphere[1] = avg[1];
         sphere[2] = avg[2];
-        sphere[3] = maxDist;
+        sphere[3] = maxDist * 2.0; // padded radius
     }
 }
 
@@ -472,9 +466,9 @@ ClosestPointDist<Index32LeafT>::evalNode(size_t pointIndex, size_t nodeIndex) co
         center[0] = mLeafBoundingSpheres[i][0];
         center[1] = mLeafBoundingSpheres[i][1];
         center[2] = mLeafBoundingSpheres[i][2];
-        const auto radius = mLeafBoundingSpheres[i][3];
+        const auto radiusSqr = mLeafBoundingSpheres[i][3];
 
-        distToLeaf = float(std::max(0.0, (pos - center).length() - radius));
+        distToLeaf = float(std::max(0.0, (pos - center).lengthSqr() - radiusSqr));
 
         if (distToLeaf < minDist) {
             minDist = distToLeaf;
@@ -514,9 +508,9 @@ ClosestPointDist<Index32LeafT>::operator()(const tbb::blocked_range<size_t>& ran
             center[0] = mNodeBoundingSpheres[i][0];
             center[1] = mNodeBoundingSpheres[i][1];
             center[2] = mNodeBoundingSpheres[i][2];
-            const auto radius = mNodeBoundingSpheres[i][3];
+            const auto radiusSqr = mNodeBoundingSpheres[i][3];
 
-            distToNode = float(std::max(0.0, (pos - center).length() - radius));
+            distToNode = float(std::max(0.0, (pos - center).lengthSqr() - radiusSqr));
 
             if (distToNode < minDist) {
                 minDist = distToNode;
@@ -663,15 +657,80 @@ fillWithSpheres(
     int instanceCount,
     InterrupterT* interrupter)
 {
+    fillWithSpheres(grid, spheres, Vec2i(1, maxSphereCount), overlapping,
+        minRadius, maxRadius, isovalue, instanceCount, interrupter);
+}
+
+
+template<typename GridT, typename InterrupterT>
+inline void
+fillWithSpheres(
+    const GridT& grid,
+    std::vector<openvdb::Vec4s>& spheres,
+    const Vec2i& sphereCount,
+    bool overlapping,
+    float minRadius,
+    float maxRadius,
+    float isovalue,
+    int instanceCount,
+    InterrupterT* interrupter)
+{
     spheres.clear();
+
+    if (grid.empty()) return;
+
+    const int
+        minSphereCount = sphereCount[0],
+        maxSphereCount = sphereCount[1];
+    if ((minSphereCount > maxSphereCount) || (maxSphereCount < 1)) {
+        OPENVDB_LOG_WARN("fillWithSpheres: minimum sphere count ("
+            << minSphereCount << ") exceeds maximum count (" << maxSphereCount << ")");
+        return;
+    }
     spheres.reserve(maxSphereCount);
 
-    const bool addNBPoints = grid.activeVoxelCount() < 10000;
+    auto gridPtr = grid.copy(); // shallow copy
+
+    if (gridPtr->getGridClass() == GRID_LEVEL_SET) {
+        // Clamp the isovalue to the level set's background value minus epsilon.
+        // (In a valid narrow-band level set, all voxels, including background voxels,
+        // have values less than or equal to the background value, so an isovalue
+        // greater than or equal to the background value would produce a mask with
+        // effectively infinite extent.)
+        isovalue = std::min(isovalue,
+            static_cast<float>(gridPtr->background() - math::Tolerance<float>::value()));
+    } else if (gridPtr->getGridClass() == GRID_FOG_VOLUME) {
+        // Clamp the isovalue of a fog volume between epsilon and one,
+        // again to avoid a mask with infinite extent.  (Recall that
+        // fog volume voxel values vary from zero outside to one inside.)
+        isovalue = math::Clamp(isovalue, math::Tolerance<float>::value(), 1.f);
+    }
+
+    // ClosestSurfacePoint is inaccurate for small grids.
+    // Resample the input grid if it is too small.
+    auto numVoxels = gridPtr->activeVoxelCount();
+    if (numVoxels < 10000) {
+        const auto scale = 1.0 / math::Cbrt(2.0 * 10000.0 / double(numVoxels));
+        auto scaledXform = gridPtr->transform().copy();
+        scaledXform->preScale(scale);
+
+        auto newGridPtr = levelSetRebuild(*gridPtr, isovalue,
+            LEVEL_SET_HALF_WIDTH, LEVEL_SET_HALF_WIDTH, scaledXform.get(), interrupter);
+
+        const auto newNumVoxels = newGridPtr->activeVoxelCount();
+        if (newNumVoxels > numVoxels) {
+            OPENVDB_LOG_DEBUG_RUNTIME("fillWithSpheres: resampled input grid from "
+                << numVoxels << " voxel" << (numVoxels == 1 ? "" : "s")
+                << " to " << newNumVoxels << " voxel" << (newNumVoxels == 1 ? "" : "s"));
+            gridPtr = newGridPtr;
+            numVoxels = newNumVoxels;
+        }
+    }
+
+    const bool addNarrowBandPoints = (numVoxels < 10000);
     int instances = std::max(instanceCount, maxSphereCount);
 
     using TreeT = typename GridT::TreeType;
-    using ValueT = typename GridT::ValueType;
-
     using BoolTreeT = typename TreeT::template ValueConverter<bool>::Type;
     using Int16TreeT = typename TreeT::template ValueConverter<Int16>::Type;
 
@@ -679,29 +738,16 @@ fillWithSpheres(
         0xccab8ee7, 11, 0xffffffff, 7, 0x31b6ab00, 15, 0xffe50000, 17, 1812433253>; // mt11213b
     RandGen mtRand(/*seed=*/0);
 
-    const TreeT& tree = grid.tree();
-    const math::Transform& transform = grid.transform();
+    const TreeT& tree = gridPtr->tree();
+    math::Transform transform = gridPtr->transform();
 
     std::vector<Vec3R> instancePoints;
     {
         // Compute a mask of the voxels enclosed by the isosurface.
         typename Grid<BoolTreeT>::Ptr interiorMaskPtr;
-        if (grid.getGridClass() == GRID_LEVEL_SET) {
-            // Clamp the isovalue to the level set's background value minus epsilon.
-            // (In a valid narrow-band level set, all voxels, including background voxels,
-            // have values less than or equal to the background value, so an isovalue
-            // greater than or equal to the background value would produce a mask with
-            // effectively infinite extent.)
-            isovalue = std::min(isovalue,
-                static_cast<float>(tree.background() - math::Tolerance<ValueT>::value()));
-            interiorMaskPtr = sdfInteriorMask(grid, ValueT(isovalue));
+        if (gridPtr->getGridClass() == GRID_LEVEL_SET) {
+            interiorMaskPtr = sdfInteriorMask(*gridPtr, isovalue);
         } else {
-            if (grid.getGridClass() == GRID_FOG_VOLUME) {
-                // Clamp the isovalue of a fog volume between epsilon and one,
-                // again to avoid a mask with infinite extent.  (Recall that
-                // fog volume voxel values vary from zero outside to one inside.)
-                isovalue = math::Clamp(isovalue, math::Tolerance<float>::value(), 1.f);
-            }
             // For non-level-set grids, the interior mask comprises the active voxels.
             interiorMaskPtr = typename Grid<BoolTreeT>::Ptr(Grid<BoolTreeT>::create(false));
             interiorMaskPtr->setTransform(transform.copy());
@@ -710,21 +756,32 @@ fillWithSpheres(
 
         if (interrupter && interrupter->wasInterrupted()) return;
 
-        erodeVoxels(interiorMaskPtr->tree(), 1);
+        // If the interior mask is small and eroding it results in an empty grid,
+        // use the uneroded mask instead.  (But if the minimum sphere count is zero,
+        // then eroding away the mask is acceptable.)
+        if (!addNarrowBandPoints || (minSphereCount <= 0)) {
+            erodeVoxels(interiorMaskPtr->tree(), 1);
+        } else {
+            auto& maskTree = interiorMaskPtr->tree();
+            auto copyOfTree = StaticPtrCast<BoolTreeT>(maskTree.copy());
+            erodeVoxels(maskTree, 1);
+            if (maskTree.empty()) { interiorMaskPtr->setTree(copyOfTree); }
+        }
 
         // Scatter candidate sphere centroids (instancePoints)
         instancePoints.reserve(instances);
         v2s_internal::PointAccessor ptnAcc(instancePoints);
 
-        UniformPointScatter<v2s_internal::PointAccessor, RandGen, InterrupterT> scatter(
-            ptnAcc, Index64(addNBPoints ? (instances / 2) : instances), mtRand, 1.0, interrupter);
+        const auto scatterCount = Index64(addNarrowBandPoints ? (instances / 2) : instances);
 
+        UniformPointScatter<v2s_internal::PointAccessor, RandGen, InterrupterT> scatter(
+            ptnAcc, scatterCount, mtRand, 1.0, interrupter);
         scatter(*interiorMaskPtr);
     }
 
     if (interrupter && interrupter->wasInterrupted()) return;
 
-    auto csp = ClosestSurfacePoint<GridT>::create(grid, isovalue, interrupter);
+    auto csp = ClosestSurfacePoint<GridT>::create(*gridPtr, isovalue, interrupter);
     if (!csp) return;
 
     // Add extra instance points in the interior narrow band.
@@ -746,13 +803,13 @@ fillWithSpheres(
 
     if (interrupter && interrupter->wasInterrupted()) return;
 
+    // Assign a radius to each candidate sphere.  The radius is the world-space
+    // distance from the sphere's center to the closest surface point.
     std::vector<float> instanceRadius;
     if (!csp->search(instancePoints, instanceRadius)) return;
 
-    std::vector<unsigned char> instanceMask(instancePoints.size(), 0);
     float largestRadius = 0.0;
     int largestRadiusIdx = 0;
-
     for (size_t n = 0, N = instancePoints.size(); n < N; ++n) {
         if (instanceRadius[n] > largestRadius) {
             largestRadius = instanceRadius[n];
@@ -760,8 +817,8 @@ fillWithSpheres(
         }
     }
 
-    Vec3s pos;
-    Vec4s sphere;
+    std::vector<unsigned char> instanceMask(instancePoints.size(), 0);
+
     minRadius = float(minRadius * transform.voxelSize()[0]);
     maxRadius = float(maxRadius * transform.voxelSize()[0]);
 
@@ -771,12 +828,13 @@ fillWithSpheres(
 
         largestRadius = std::min(maxRadius, largestRadius);
 
-        if (s != 0 && largestRadius < minRadius) break;
+        if ((int(s) >= minSphereCount) && (largestRadius < minRadius)) break;
 
-        sphere[0] = float(instancePoints[largestRadiusIdx].x());
-        sphere[1] = float(instancePoints[largestRadiusIdx].y());
-        sphere[2] = float(instancePoints[largestRadiusIdx].z());
-        sphere[3] = largestRadius;
+        const Vec4s sphere(
+            float(instancePoints[largestRadiusIdx].x()),
+            float(instancePoints[largestRadiusIdx].y()),
+            float(instancePoints[largestRadiusIdx].z()),
+            largestRadius);
 
         spheres.push_back(sphere);
         instanceMask[largestRadiusIdx] = 1;
@@ -841,7 +899,7 @@ ClosestSurfacePoint<GridT>::initialize(
 
         const tbb::blocked_range<size_t> auxiliaryLeafNodeRange(0, signFlagsLeafNodes.size());
 
-        boost::scoped_array<Index32> leafNodeOffsets(new Index32[signFlagsLeafNodes.size()]);
+        std::unique_ptr<Index32[]> leafNodeOffsets(new Index32[signFlagsLeafNodes.size()]);
 
         tbb::parallel_for(auxiliaryLeafNodeRange,
             volume_to_mesh_internal::LeafNodePointCount<Int16LeafNodeType::LOG2DIM>
@@ -970,7 +1028,3 @@ ClosestSurfacePoint<GridT>::searchAndReplace(std::vector<Vec3R>& points,
 } // namespace openvdb
 
 #endif // OPENVDB_TOOLS_VOLUME_TO_MESH_HAS_BEEN_INCLUDED
-
-// Copyright (c) 2012-2018 DreamWorks Animation LLC
-// All rights reserved. This software is distributed under the
-// Mozilla Public License 2.0 ( http://www.mozilla.org/MPL/2.0/ )

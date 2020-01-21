@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_vector2.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_vector2.oso
 shader mx_noise3d_vector2	%meta{string,help,"3D noise"} 
 param	point	position	0 0 0		%meta{string,help,"input coordinate position (default: object space P)"} %meta{int,lockgeom,0}  %read{3,3} %write{1,1} %derivs %initexpr
 param	struct vector2	amplitude			%meta{string,help,"center-to-peak amplitude of the noise"}  %read{2147483647,-1} %write{2147483647,-1} %struct{"vector2"} %structfields{x,y} %structfieldtypes{"ff"} %structnfields{2}
@@ -20,20 +20,20 @@ const	string	$const4	"noise"		%read{2,2} %write{2147483647,-1}
 const	int	$const5	0		%read{4,4} %write{2147483647,-1}
 const	int	$const6	1		%read{5,5} %write{2147483647,-1}
 code position
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_vector2.osl:12
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_vector2.osl:12
 #     point position = transform ("object", P)
-	functioncall	$const2 2 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_vector2.osl"} %line{12} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:267
+	functioncall	$const2 2 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_vector2.osl"} %line{12} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:267
 # point  transform (string to, point p)  { return transform("common",to,p); }
-	transform	position $const3 $const1 P 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h"} %line{267} %argrw{"wrrr"}
+	transform	position $const3 $const1 P 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h"} %line{267} %argrw{"wrrr"}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_vector2.osl:28
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_vector2.osl:28
 #     out = noise (noisetype, position);
-	functioncall	$const4 6 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_vector2.osl"} %line{28} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:283
+	functioncall	$const4 6 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_vector2.osl"} %line{28} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:283
 #     color cnoise = (color) noise (noisetype, position);
-	noise		___528_cnoise noisetype position 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{283} %argrw{"wrr"} %argderivs{2}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:284
+	noise		___528_cnoise noisetype position 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{283} %argrw{"wrr"} %argderivs{2}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:284
 #     return vector2 (cnoise[0], cnoise[1]);
 	compref		out.x ___528_cnoise $const5 	%line{284} %argrw{"wrr"}
 	compref		out.y ___528_cnoise $const6 	%argrw{"wrr"}

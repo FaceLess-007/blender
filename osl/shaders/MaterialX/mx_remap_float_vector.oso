@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.oso
 shader mx_remap_float_vector	%meta{string,help,"Vector Increase or decrease remap of a float/color value using a linear slope multiplier."} 
 param	vector	in	0 0 0		%read{1,1} %write{2147483647,-1}
 param	float	inlow	0		%read{1,2} %write{2147483647,-1}
@@ -38,65 +38,65 @@ temp	color	$tmp17	%read{29,29} %write{28,28}
 temp	float	$tmp18	%read{31,31} %write{30,30}
 temp	color	$tmp19	%read{32,32} %write{31,31}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.osl:23
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.osl:23
 #     out = remap(in, inlow, inhigh, 0, 1, 0);
-	functioncall	$const5 14 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.osl"} %line{23} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:44
+	functioncall	$const5 14 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.osl"} %line{23} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:44
 #       color x = (in - inLow) / (inHigh - inLow);
-	sub		$tmp1 in inlow 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{44} %argrw{"wrr"}
+	sub		$tmp1 in inlow 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{44} %argrw{"wrr"}
 	sub		$tmp2 inhigh inlow 	%argrw{"wrr"}
 	div		___491_x $tmp1 $tmp2 	%argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:45
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:45
 #       if (doClamp == 1) {
 	eq		$tmp3 $const1 $const3 	%line{45} %argrw{"wrr"}
 	if		$tmp3 11 11 	%argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:46
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:46
 #            x = clamp(x, 0, 1);
 	assign		$tmp4 $const2 	%line{46} %argrw{"wr"}
 	assign		$tmp5 $const4 	%argrw{"wr"}
 	functioncall	$const6 11 	%argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:144
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:144
 # color  clamp (color x, color minval, color maxval) { return max(min(x,maxval),minval); }
-	min		$tmp6 ___491_x $tmp5 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h"} %line{144} %argrw{"wrr"}
+	min		$tmp6 ___491_x $tmp5 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h"} %line{144} %argrw{"wrr"}
 	max		___491_x $tmp6 $tmp4 	%argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:48
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:48
 #       return outLow + (outHigh - outLow) * x;
-	sub		$tmp7 $const4 $const2 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{48} %argrw{"wrr"}
+	sub		$tmp7 $const4 $const2 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{48} %argrw{"wrr"}
 	mul		$tmp8 $tmp7 ___491_x 	%argrw{"wrr"}
 	add		out $const2 $tmp8 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.osl:26
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.osl:26
 #     out = fgamma(out, gamma);
-	functioncall	$const7 19 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.osl"} %line{26} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:119
+	functioncall	$const7 19 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.osl"} %line{26} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:119
 #     return sign(in) * pow(abs(in), g);
-	sign		$tmp9 out 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{119} %argrw{"wr"}
+	sign		$tmp9 out 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{119} %argrw{"wr"}
 	abs		$tmp11 out 	%argrw{"wr"}
 	pow		$tmp10 $tmp11 gamma 	%argrw{"wrr"}
 	mul		out $tmp9 $tmp10 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.osl:29
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.osl:29
 #     out = remap(out, 0, 1, outlow, outhigh, doclamp); 
-	functioncall	$const5 33 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.osl"} %line{29} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:44
+	functioncall	$const5 33 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_remap_float_vector.osl"} %line{29} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:44
 #       color x = (in - inLow) / (inHigh - inLow);
-	sub		$tmp12 out $const2 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{44} %argrw{"wrr"}
+	sub		$tmp12 out $const2 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{44} %argrw{"wrr"}
 	sub		$tmp13 $const4 $const2 	%argrw{"wrr"}
 	div		___491_x $tmp12 $tmp13 	%argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:45
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:45
 #       if (doClamp == 1) {
 	eq		$tmp14 doclamp $const3 	%line{45} %argrw{"wrr"}
 	if		$tmp14 30 30 	%argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:46
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:46
 #            x = clamp(x, 0, 1);
 	assign		$tmp15 $const2 	%line{46} %argrw{"wr"}
 	assign		$tmp16 $const4 	%argrw{"wr"}
 	functioncall	$const6 30 	%argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:144
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:144
 # color  clamp (color x, color minval, color maxval) { return max(min(x,maxval),minval); }
-	min		$tmp17 ___491_x $tmp16 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h"} %line{144} %argrw{"wrr"}
+	min		$tmp17 ___491_x $tmp16 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h"} %line{144} %argrw{"wrr"}
 	max		___491_x $tmp17 $tmp15 	%argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:48
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:48
 #       return outLow + (outHigh - outLow) * x;
-	sub		$tmp18 outhigh outlow 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{48} %argrw{"wrr"}
+	sub		$tmp18 outhigh outlow 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{48} %argrw{"wrr"}
 	mul		$tmp19 $tmp18 ___491_x 	%argrw{"wrr"}
 	add		out outlow $tmp19 	%argrw{"wrr"}
 	end

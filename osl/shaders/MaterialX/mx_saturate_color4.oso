@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_saturate_color4.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_saturate_color4.oso
 shader mx_saturate_color4	%meta{string,help,"Adjust the saturation of a color; the alpha channel will be unchanged if present."} 
 param	struct color4	in			%read{2147483647,-1} %write{2147483647,-1} %struct{"color4"} %structfields{rgb,a} %structfieldtypes{"cf"} %structnfields{2}
 param	color	in.rgb	0 0 0		%read{1,5} %write{2147483647,-1} %mystruct{in} %mystructfield{0}
@@ -16,21 +16,21 @@ const	string	$const1	"saturate"		%read{0,0} %write{2147483647,-1}
 temp	float	$tmp2	%read{2,2} %write{1,1}
 const	string	$const2	"mix"		%read{4,4} %write{2147483647,-1}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_saturate_color4.osl:34
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_saturate_color4.osl:34
 #     out = mix (saturate (in, lumacoeffs), in, amount);
-	functioncall	$const1 4 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_saturate_color4.osl"} %line{34} %argrw{"r"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_saturate_color4.osl:20
+	functioncall	$const1 4 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_saturate_color4.osl"} %line{34} %argrw{"r"}
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_saturate_color4.osl:20
 #     return color4 (dot (in.rgb, lumacoeffs), in.a);
 	dot		$tmp2 in.rgb lumacoeffs 	%line{20} %argrw{"wrr"}
 	assign		$tmp1.rgb $tmp2 	%argrw{"wr"}
 	assign		$tmp1.a in.a 	%argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_saturate_color4.osl:34
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_saturate_color4.osl:34
 #     out = mix (saturate (in, lumacoeffs), in, amount);
 	functioncall	$const2 7 	%line{34} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:156
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:156
 #     return color4(mix(a.rgb, b.rgb, x),
-	mix		out.rgb $tmp1.rgb in.rgb amount 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{156} %argrw{"wrrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:157
+	mix		out.rgb $tmp1.rgb in.rgb amount 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{156} %argrw{"wrrr"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:157
 #                   mix(a.a, b.a, x));
 	mix		out.a $tmp1.a in.a amount 	%line{157} %argrw{"wrrr"}
 	end

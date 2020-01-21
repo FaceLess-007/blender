@@ -1,32 +1,5 @@
-///////////////////////////////////////////////////////////////////////////
-//
-// Copyright (c) 2012-2018 DreamWorks Animation LLC
-//
-// All rights reserved. This software is distributed under the
-// Mozilla Public License 2.0 ( http://www.mozilla.org/MPL/2.0/ )
-//
-// Redistributions of source code must retain the above copyright
-// and license notice and the following restrictions and disclaimer.
-//
-// *     Neither the name of DreamWorks Animation nor the names of
-// its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL,
-// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// IN NO EVENT SHALL THE COPYRIGHT HOLDERS' AND CONTRIBUTORS' AGGREGATE
-// LIABILITY FOR ALL CLAIMS REGARDLESS OF THEIR BASIS EXCEED US$250.00.
-//
-///////////////////////////////////////////////////////////////////////////
+// Copyright Contributors to the OpenVDB Project
+// SPDX-License-Identifier: MPL-2.0
 
 /// @file   MeshToVolume.h
 ///
@@ -1957,9 +1930,25 @@ struct VoxelizationData {
 
     unsigned char getNewPrimId() {
 
+        /// @warning Don't use parallel methods here!
+        /// The primIdTree is used as a "scratch" pad to mark visits for a given polygon
+        /// into voxels which it may contribute to. The tree is kept as lightweight as
+        /// possible and is reset when a maximum count or size is reached. A previous
+        /// bug here occurred due to the calling of tree methods with multi-threaded
+        /// implementations, resulting in nested parallelization and re-use of the TLS
+        /// from the initial task. This consequently resulted in non deterministic values
+        /// of mPrimCount on the return of the initial task, and could potentially end up
+        /// with a mPrimCount equal to that of the MaxPrimId. This is used as the background
+        /// value of the scratch tree.
+        /// @see jira.aswf.io/browse/OVDB-117, PR #564
+        /// @todo Consider profiling this operator with tree.clear() and Investigate the
+        /// chosen value of MaxPrimId
+
         if (mPrimCount == MaxPrimId || primIdTree.leafCount() > 1000) {
             mPrimCount = 0;
-            primIdTree.clear();
+            primIdTree.root().clear();
+            primIdTree.clearAllAccessors();
+            assert(mPrimCount == 0);
         }
 
         return mPrimCount++;
@@ -2036,11 +2025,13 @@ private:
         enum { POLYGON_LIMIT = 1000 };
 
         SubTask(const Triangle& prim, DataTable& dataTable,
-            int subdivisionCount, size_t polygonCount)
+            int subdivisionCount, size_t polygonCount,
+            Interrupter* interrupter = nullptr)
             : mLocalDataTable(&dataTable)
             , mPrim(prim)
             , mSubdivisionCount(subdivisionCount)
             , mPolygonCount(polygonCount)
+            , mInterrupter(interrupter)
         {
         }
 
@@ -2051,17 +2042,18 @@ private:
                 typename VoxelizationDataType::Ptr& dataPtr = mLocalDataTable->local();
                 if (!dataPtr) dataPtr.reset(new VoxelizationDataType());
 
-                voxelizeTriangle(mPrim, *dataPtr);
+                voxelizeTriangle(mPrim, *dataPtr, mInterrupter);
 
-            } else {
-                spawnTasks(mPrim, *mLocalDataTable, mSubdivisionCount, mPolygonCount);
+            } else if (!(mInterrupter && mInterrupter->wasInterrupted())) {
+                spawnTasks(mPrim, *mLocalDataTable, mSubdivisionCount, mPolygonCount, mInterrupter);
             }
         }
 
-        DataTable * const mLocalDataTable;
-        Triangle    const mPrim;
-        int         const mSubdivisionCount;
-        size_t      const mPolygonCount;
+        DataTable   * const mLocalDataTable;
+        Triangle      const mPrim;
+        int           const mSubdivisionCount;
+        size_t        const mPolygonCount;
+        Interrupter * const mInterrupter;
     }; // struct SubTask
 
     inline static int evalSubdivisionCount(const Triangle& prim)
@@ -2085,14 +2077,18 @@ private:
             polygonCount < SubTask::POLYGON_LIMIT ? evalSubdivisionCount(prim) : 0;
 
         if (subdivisionCount <= 0) {
-            voxelizeTriangle(prim, data);
+            voxelizeTriangle(prim, data, mInterrupter);
         } else {
-            spawnTasks(prim, *mDataTable, subdivisionCount, polygonCount);
+            spawnTasks(prim, *mDataTable, subdivisionCount, polygonCount, mInterrupter);
         }
     }
 
     static void spawnTasks(
-        const Triangle& mainPrim, DataTable& dataTable, int subdivisionCount, size_t polygonCount)
+        const Triangle& mainPrim,
+        DataTable& dataTable,
+        int subdivisionCount,
+        size_t polygonCount,
+        Interrupter* const interrupter)
     {
         subdivisionCount -= 1;
         polygonCount *= 4;
@@ -2109,27 +2105,27 @@ private:
         prim.a = mainPrim.a;
         prim.b = ab;
         prim.c = ac;
-        tasks.run(SubTask(prim, dataTable, subdivisionCount, polygonCount));
+        tasks.run(SubTask(prim, dataTable, subdivisionCount, polygonCount, interrupter));
 
         prim.a = ab;
         prim.b = bc;
         prim.c = ac;
-        tasks.run(SubTask(prim, dataTable, subdivisionCount, polygonCount));
+        tasks.run(SubTask(prim, dataTable, subdivisionCount, polygonCount, interrupter));
 
         prim.a = ab;
         prim.b = mainPrim.b;
         prim.c = bc;
-        tasks.run(SubTask(prim, dataTable, subdivisionCount, polygonCount));
+        tasks.run(SubTask(prim, dataTable, subdivisionCount, polygonCount, interrupter));
 
         prim.a = ac;
         prim.b = bc;
         prim.c = mainPrim.c;
-        tasks.run(SubTask(prim, dataTable, subdivisionCount, polygonCount));
+        tasks.run(SubTask(prim, dataTable, subdivisionCount, polygonCount, interrupter));
 
         tasks.wait();
     }
 
-    static void voxelizeTriangle(const Triangle& prim, VoxelizationDataType& data)
+    static void voxelizeTriangle(const Triangle& prim, VoxelizationDataType& data, Interrupter* const interrupter)
     {
         std::deque<Coord> coordList;
         Coord ijk, nijk;
@@ -2137,26 +2133,35 @@ private:
         ijk = Coord::floor(prim.a);
         coordList.push_back(ijk);
 
-        computeDistance(ijk, prim, data);
+        // The first point may not be quite in bounds, and rely
+        // on one of the neighbours to have the first valid seed,
+        // so we cannot early-exit here.
+        updateDistance(ijk, prim, data);
 
         unsigned char primId = data.getNewPrimId();
         data.primIdAcc.setValueOnly(ijk, primId);
 
         while (!coordList.empty()) {
-            ijk = coordList.back();
-            coordList.pop_back();
+            if (interrupter && interrupter->wasInterrupted()) {
+                tbb::task::self().cancel_group_execution();
+                break;
+            }
+            for (Int32 pass = 0; pass < 1048576 && !coordList.empty(); ++pass) {
+                ijk = coordList.back();
+                coordList.pop_back();
 
-            for (Int32 i = 0; i < 26; ++i) {
-                nijk = ijk + util::COORD_OFFSETS[i];
-                if (primId != data.primIdAcc.getValue(nijk)) {
-                    data.primIdAcc.setValueOnly(nijk, primId);
-                    if(computeDistance(nijk, prim, data)) coordList.push_back(nijk);
+                for (Int32 i = 0; i < 26; ++i) {
+                    nijk = ijk + util::COORD_OFFSETS[i];
+                    if (primId != data.primIdAcc.getValue(nijk)) {
+                        data.primIdAcc.setValueOnly(nijk, primId);
+                        if(updateDistance(nijk, prim, data)) coordList.push_back(nijk);
+                    }
                 }
             }
         }
     }
 
-    static bool computeDistance(const Coord& ijk, const Triangle& prim, VoxelizationDataType& data)
+    static bool updateDistance(const Coord& ijk, const Triangle& prim, VoxelizationDataType& data)
     {
         Vec3d uvw, voxelCenter(ijk[0], ijk[1], ijk[2]);
 
@@ -2164,6 +2169,11 @@ private:
 
         const ValueType dist = ValueType((voxelCenter -
             closestPointOnTriangleToPoint(prim.a, prim.c, prim.b, voxelCenter, uvw)).lengthSqr());
+
+        // Either the points may be NAN, or they could be far enough from
+        // the origin that computing distance fails.
+        if (std::isnan(dist))
+            return false;
 
         const ValueType oldDist = data.distAcc.getValue(ijk);
 
@@ -3438,14 +3448,16 @@ doMeshConversion(
         QuadAndTriangleDataAdapter<Vec3s, Vec3I>
             mesh(indexSpacePoints.get(), numPoints, &triangles[0], triangles.size());
 
-        return meshToVolume<GridType>(mesh, xform, exBandWidth, inBandWidth, conversionFlags);
+        return meshToVolume<GridType>(
+            interrupter, mesh, xform, exBandWidth, inBandWidth, conversionFlags);
 
     } else if (triangles.empty()) {
 
         QuadAndTriangleDataAdapter<Vec3s, Vec4I>
             mesh(indexSpacePoints.get(), numPoints, &quads[0], quads.size());
 
-        return meshToVolume<GridType>(mesh, xform, exBandWidth, inBandWidth, conversionFlags);
+        return meshToVolume<GridType>(
+            interrupter, mesh, xform, exBandWidth, inBandWidth, conversionFlags);
     }
 
     // pack primitives
@@ -4202,7 +4214,3 @@ createLevelSetBox(const math::BBox<VecType>& bbox,
 } // namespace openvdb
 
 #endif // OPENVDB_TOOLS_MESH_TO_VOLUME_HAS_BEEN_INCLUDED
-
-// Copyright (c) 2012-2018 DreamWorks Animation LLC
-// All rights reserved. This software is distributed under the
-// Mozilla Public License 2.0 ( http://www.mozilla.org/MPL/2.0/ )

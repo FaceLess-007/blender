@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_geomattrvalue_color2.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_geomattrvalue_color2.oso
 shader mx_geomattrvalue_color2	%meta{string,help,"The value assigned to the current geometry through the specified geomattr name"} 
 param	string	attrname	""		%read{0,0} %write{2147483647,-1}
 oparam	struct color2	out			%read{2147483647,-1} %write{0,0} %struct{"color2"} %structfields{r,a} %structfieldtypes{"ff"} %structnfields{2}
@@ -8,7 +8,7 @@ oparam	float	out.r	0		%read{2147483647,-1} %write{2147483647,-1} %mystruct{out} 
 oparam	float	out.a	0		%read{2147483647,-1} %write{2147483647,-1} %mystruct{out} %mystructfield{1}
 temp	int	$tmp1	%read{2147483647,-1} %write{0,0}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_geomattrvalue_color2.osl:16
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_geomattrvalue_color2.osl:16
 #     getattribute(attrname, out);
-	getattribute	$tmp1 attrname out 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_geomattrvalue_color2.osl"} %line{16} %argrw{"wrw"}
+	getattribute	$tmp1 attrname out 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_geomattrvalue_color2.osl"} %line{16} %argrw{"wrw"}
 	end

@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_multiply_vector4.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_multiply_vector4.oso
 shader mx_multiply_vector4	%meta{string,help,"Vector4 multiply in1 by in2"} 
 param	struct vector4	in1			%read{2147483647,-1} %write{2147483647,-1} %struct{"vector4"} %structfields{x,y,z,w} %structfieldtypes{"ffff"} %structnfields{4}
 param	float	in1.x	0		%read{1,1} %write{2147483647,-1} %mystruct{in1} %mystructfield{0}
@@ -19,12 +19,12 @@ oparam	float	out.z	0		%read{2147483647,-1} %write{3,3} %mystruct{out} %mystructf
 oparam	float	out.w	0		%read{2147483647,-1} %write{4,4} %mystruct{out} %mystructfield{3}
 const	string	$const1	"__operator__mul__"		%read{0,0} %write{2147483647,-1}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_multiply_vector4.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_multiply_vector4.osl:19
 # 
-	functioncall	$const1 5 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_multiply_vector4.osl"} %line{19} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:80
+	functioncall	$const1 5 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_multiply_vector4.osl"} %line{19} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:80
 #     return vector4(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-	mul		out.x in1.x in2.x 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h"} %line{80} %argrw{"wrr"}
+	mul		out.x in1.x in2.x 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h"} %line{80} %argrw{"wrr"}
 	mul		out.y in1.y in2.y 	%argrw{"wrr"}
 	mul		out.z in1.z in2.z 	%argrw{"wrr"}
 	mul		out.w in1.w in2.w 	%argrw{"wrr"}

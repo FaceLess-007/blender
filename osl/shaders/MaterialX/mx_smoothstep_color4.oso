@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_smoothstep_color4.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_smoothstep_color4.oso
 shader mx_smoothstep_color4	%meta{string,help,"outputs a smooth (hermite-interpolated) remapping of input values from low-high to output 0-1."} 
 param	struct color4	in			%meta{string,help,"input"}  %read{2147483647,-1} %write{2147483647,-1} %struct{"color4"} %structfields{rgb,a} %structfieldtypes{"cf"} %structnfields{2}
 param	color	in.rgb	0 0 0		%meta{string,help,"input"}  %read{4,12} %write{2147483647,-1} %mystruct{in} %mystructfield{0}
@@ -31,32 +31,32 @@ temp	float	$tmp10	%read{13,13} %write{10,10}
 temp	float	$tmp11	%read{13,13} %write{11,11}
 temp	float	$tmp12	%read{13,13} %write{12,12}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_smoothstep_color4.osl:21
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_smoothstep_color4.osl:21
 #     out = smoothstep(low, high, in);
-	functioncall	$const1 16 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_smoothstep_color4.osl"} %line{21} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:167
+	functioncall	$const1 16 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_smoothstep_color4.osl"} %line{21} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:167
 #     return color4(smoothstep(edge0.rgb, edge1.rgb, c.rgb),
-	functioncall	$const1 15 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{167} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:325
+	functioncall	$const1 15 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{167} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:325
 #     return color (smoothstep(edge0[0], edge1[0], in[0]),
-	compref		$tmp2 low.rgb $const2 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h"} %line{325} %argrw{"wrr"}
+	compref		$tmp2 low.rgb $const2 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h"} %line{325} %argrw{"wrr"}
 	compref		$tmp3 high.rgb $const2 	%argrw{"wrr"}
 	compref		$tmp4 in.rgb $const2 	%argrw{"wrr"}
 	smoothstep	$tmp1 $tmp2 $tmp3 $tmp4 	%argrw{"wrrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:326
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:326
 #                   smoothstep(edge0[1], edge1[1], in[1]),
 	compref		$tmp6 low.rgb $const3 	%line{326} %argrw{"wrr"}
 	compref		$tmp7 high.rgb $const3 	%argrw{"wrr"}
 	compref		$tmp8 in.rgb $const3 	%argrw{"wrr"}
 	smoothstep	$tmp5 $tmp6 $tmp7 $tmp8 	%argrw{"wrrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:327
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:327
 #                   smoothstep(edge0[2], edge1[2], in[2]));
 	compref		$tmp10 low.rgb $const4 	%line{327} %argrw{"wrr"}
 	compref		$tmp11 high.rgb $const4 	%argrw{"wrr"}
 	compref		$tmp12 in.rgb $const4 	%argrw{"wrr"}
 	smoothstep	$tmp9 $tmp10 $tmp11 $tmp12 	%argrw{"wrrr"}
 	color		out.rgb $tmp1 $tmp5 $tmp9 	%argrw{"wrrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:168
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:168
 #                   smoothstep(edge0.a, edge1.a, c.a));
-	smoothstep	out.a low.a high.a in.a 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{168} %argrw{"wrrr"}
+	smoothstep	out.a low.a high.a in.a 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{168} %argrw{"wrrr"}
 	end

@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.oso
 shader mx_image_color2	%meta{string,help,"Texture lookup"} 
 param	string	file	""		%meta{string,help,"Texture filename"} %meta{string,widget,"filename"}  %read{5,5} %write{2147483647,-1}
 param	string	layer	""		%meta{string,help,"Subimage in texture file"} %meta{string,widget,"filename"}  %read{5,5} %write{2147483647,-1}
@@ -34,31 +34,31 @@ const	string	$const7	"missingcolor"		%read{5,5} %write{2147483647,-1}
 const	string	$const8	"missingalpha"		%read{5,5} %write{2147483647,-1}
 const	string	$const9	"pack"		%read{6,6} %write{2147483647,-1}
 code texcoord.x
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl:25
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl:25
 #            int lockgeom = 0 ]],
-	assign		texcoord.x u 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl"} %line{25} %argrw{"wr"}
+	assign		texcoord.x u 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl"} %line{25} %argrw{"wr"}
 code texcoord.y
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl:25
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl:25
 #            int lockgeom = 0 ]],
-	assign		texcoord.y v 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl"} %line{25} %argrw{"wr"}
+	assign		texcoord.y v 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl"} %line{25} %argrw{"wr"}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl:45
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl:45
 #     setup_missing_color_alpha (default_value, missingColor, missingAlpha);
-	functioncall	$const1 5 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl"} %line{45} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:646
+	functioncall	$const1 5 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl"} %line{45} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:646
 #     missingColor = color (default_value.r, default_value.a, 0);
-	color		missingColor default_value.r default_value.a $const3 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{646} %argrw{"wrrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:647
+	color		missingColor default_value.r default_value.a $const3 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{646} %argrw{"wrrr"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:647
 #     missingAlpha = 1;
 	assign		missingAlpha $const4 	%line{647} %argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl:50
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl:50
 #                         "missingcolor", missingColor, "missingalpha", missingAlpha);
-	texture		rgb file texcoord.x texcoord.y $const5 alpha $const6 layer $const7 missingColor $const8 missingAlpha 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl"} %line{50} %argrw{"wrrrrwrrrrrr"} %argderivs{2,3}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl:52
+	texture		rgb file texcoord.x texcoord.y $const5 alpha $const6 layer $const7 missingColor $const8 missingAlpha 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl"} %line{50} %argrw{"wrrrrwrrrrrr"} %argderivs{2,3}
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_image_color2.osl:52
 #     out = pack (rgb, alpha);
 	functioncall	$const9 9 	%line{52} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:730
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:730
 #     return color2 (rgb[0], rgb[1]);
-	compref		out.r rgb $const2 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{730} %argrw{"wrr"}
+	compref		out.r rgb $const2 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{730} %argrw{"wrr"}
 	compref		out.a rgb $const4 	%argrw{"wrr"}
 	end

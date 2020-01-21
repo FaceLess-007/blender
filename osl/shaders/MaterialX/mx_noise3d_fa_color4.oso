@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.oso
 shader mx_noise3d_fa_color4	%meta{string,help,"3D noise"} 
 param	point	position	0 0 0		%meta{string,help,"input coordinate position (default: object space P)"} %meta{int,lockgeom,0}  %read{3,4} %write{1,1} %derivs %initexpr
 param	float	amplitude	1		%meta{string,help,"center-to-peak amplitude of the noise"}  %read{9,10} %write{2147483647,-1}
@@ -29,53 +29,53 @@ const	string	$const7	"__operator__add__"		%read{14,17} %write{2147483647,-1}
 temp	color	$tmp5.rgb	%read{18,18} %write{15,15}
 temp	float	$tmp5.a	%read{19,19} %write{16,16}
 code position
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl:12
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl:12
 #     point position = transform("object", P)
-	functioncall	$const2 2 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl"} %line{12} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:267
+	functioncall	$const2 2 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl"} %line{12} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:267
 # point  transform (string to, point p)  { return transform("common",to,p); }
-	transform	position $const3 $const1 P 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h"} %line{267} %argrw{"wrrr"}
+	transform	position $const3 $const1 P 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h"} %line{267} %argrw{"wrrr"}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl:28
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl:28
 #     color4 n = noise (noisetype, position);
-	functioncall	$const4 8 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl"} %line{28} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:289
+	functioncall	$const4 8 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl"} %line{28} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:289
 #     color cnoise = (color) noise (noisetype, position);
-	noise		___529_cnoise noisetype position 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{289} %argrw{"wrr"} %argderivs{2}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:290
+	noise		___529_cnoise noisetype position 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{289} %argrw{"wrr"} %argderivs{2}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:290
 #     float fnoise = (float) noise (noisetype, position+vector(19,73,29));
 	add		$tmp2 position $const5 	%line{290} %argrw{"wrr"}
 	noise		___529_fnoise noisetype $tmp2 	%argrw{"wrr"} %argderivs{2}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:291
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:291
 #     return color4 (cnoise, fnoise);
 	assign		n.rgb ___529_cnoise 	%line{291} %argrw{"wr"}
 	assign		n.a ___529_fnoise 	%argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl:31
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl:31
 # 
-	functioncall	$const6 14 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl"} %line{31} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:88
+	functioncall	$const6 14 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl"} %line{31} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:88
 #     return a * color4(color(b), b);
-	assign		$tmp4.rgb amplitude 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{88} %argrw{"wr"}
+	assign		$tmp4.rgb amplitude 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{88} %argrw{"wr"}
 	assign		$tmp4.a amplitude 	%argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl:31
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl:31
 # 
-	functioncall	$const6 14 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl"} %line{31} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:78
+	functioncall	$const6 14 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl"} %line{31} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:78
 #     return color4(a.rgb * b.rgb, a.a * b.a);
-	mul		$tmp3.rgb n.rgb $tmp4.rgb 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{78} %argrw{"wrr"}
+	mul		$tmp3.rgb n.rgb $tmp4.rgb 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{78} %argrw{"wrr"}
 	mul		$tmp3.a n.a $tmp4.a 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl:31
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl:31
 # 
-	functioncall	$const7 20 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl"} %line{31} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:48
+	functioncall	$const7 20 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl"} %line{31} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:48
 #     return color4(color(a), a) + b;
-	assign		$tmp5.rgb pivot 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{48} %argrw{"wr"}
+	assign		$tmp5.rgb pivot 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{48} %argrw{"wr"}
 	assign		$tmp5.a pivot 	%argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl:31
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl:31
 # 
-	functioncall	$const7 20 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl"} %line{31} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:28
+	functioncall	$const7 20 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_color4.osl"} %line{31} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:28
 #     return color4(a.rgb + b.rgb, a.a + b.a);
-	add		out.rgb $tmp5.rgb $tmp3.rgb 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{28} %argrw{"wrr"}
+	add		out.rgb $tmp5.rgb $tmp3.rgb 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{28} %argrw{"wrr"}
 	add		out.a $tmp5.a $tmp3.a 	%argrw{"wrr"}
 	end
