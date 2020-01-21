@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.oso
 shader mx_burn_color4	%meta{string,help,"Color4 Take two 1-4 channel inputs and apply the same operator to all channels: 1-(1-B)/F"} 
 param	struct color4	fg			%read{2147483647,-1} %write{2147483647,-1} %struct{"color4"} %structfields{rgb,a} %structfieldtypes{"cf"} %structnfields{2}
 param	color	fg.rgb	0 0 0		%read{8,8} %write{2147483647,-1} %mystruct{fg} %mystructfield{0}
@@ -25,41 +25,41 @@ temp	color	$tmp5.rgb	%read{15,15} %write{12,12}
 temp	float	$tmp5.a	%read{16,16} %write{13,13}
 temp	float	$tmp6	%read{12,12} %write{11,11}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl:19
 # 
-	functioncall	$const2 7 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl"} %line{19} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:68
+	functioncall	$const2 7 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl"} %line{19} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:68
 #     return color4(color(a), a) - b;
-	assign		$tmp4 $const1 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{68} %argrw{"wr"}
+	assign		$tmp4 $const1 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{68} %argrw{"wr"}
 	assign		$tmp3.rgb $tmp4 	%argrw{"wr"}
 	assign		$tmp3.a $const1 	%argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl:19
 # 
-	functioncall	$const2 7 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl"} %line{19} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:53
+	functioncall	$const2 7 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl"} %line{19} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:53
 #     return color4(a.rgb - b.rgb, a.a - b.a);
-	sub		$tmp2.rgb $tmp3.rgb bg.rgb 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{53} %argrw{"wrr"}
+	sub		$tmp2.rgb $tmp3.rgb bg.rgb 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{53} %argrw{"wrr"}
 	sub		$tmp2.a $tmp3.a bg.a 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl:19
 # 
-	functioncall	$const3 10 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl"} %line{19} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:103
+	functioncall	$const3 10 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl"} %line{19} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:103
 #     return color4(a.rgb / b.rgb, a.a / b.a);
-	div		$tmp1.rgb $tmp2.rgb fg.rgb 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{103} %argrw{"wrr"}
+	div		$tmp1.rgb $tmp2.rgb fg.rgb 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{103} %argrw{"wrr"}
 	div		$tmp1.a $tmp2.a fg.a 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl:19
 # 
-	functioncall	$const2 17 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl"} %line{19} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:68
+	functioncall	$const2 17 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl"} %line{19} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:68
 #     return color4(color(a), a) - b;
-	assign		$tmp6 $const1 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{68} %argrw{"wr"}
+	assign		$tmp6 $const1 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{68} %argrw{"wr"}
 	assign		$tmp5.rgb $tmp6 	%argrw{"wr"}
 	assign		$tmp5.a $const1 	%argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl:19
 # 
-	functioncall	$const2 17 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl"} %line{19} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:53
+	functioncall	$const2 17 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_burn_color4.osl"} %line{19} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h:53
 #     return color4(a.rgb - b.rgb, a.a - b.a);
-	sub		out.rgb $tmp5.rgb $tmp1.rgb 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{53} %argrw{"wrr"}
+	sub		out.rgb $tmp5.rgb $tmp1.rgb 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\color4.h"} %line{53} %argrw{"wrr"}
 	sub		out.a $tmp5.a $tmp1.a 	%argrw{"wrr"}
 	end

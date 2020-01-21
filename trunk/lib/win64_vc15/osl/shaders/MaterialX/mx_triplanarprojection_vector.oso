@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.oso
 shader mx_triplanarprojection_vector	%meta{string,help,"triplanarprojection node"} 
 param	string	filex	""		%meta{string,help,"Texture filename"} %meta{string,widget,"filename"}  %read{7,7} %write{2147483647,-1}
 param	string	filey	""		%meta{string,help,"Texture filename"} %meta{string,widget,"filename"}  %read{10,10} %write{2147483647,-1}
@@ -55,74 +55,74 @@ temp	float	$tmp16	%read{27,27} %write{25,25}
 temp	float	$tmp17	%read{27,27} %write{26,26}
 const	string	$const12	"pack"		%read{28,28} %write{2147483647,-1}
 code position
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:29
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:29
 #     vector position = P,
-	assign		position P 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl"} %line{29} %argrw{"wr"}
+	assign		position P 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl"} %line{29} %argrw{"wr"}
 code inN
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:30
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:30
 # 	normal inN   = N,
-	assign		inN N 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl"} %line{30} %argrw{"wr"}
+	assign		inN N 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl"} %line{30} %argrw{"wr"}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:36
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:36
 #     setup_missing_color_alpha (default_value, missingColor, missingAlpha);
-	functioncall	$const1 5 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl"} %line{36} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:639
+	functioncall	$const1 5 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl"} %line{36} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:639
 #     missingColor = vector (default_value);
-	assign		missingColor default_value 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{639} %argrw{"wr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:640
+	assign		missingColor default_value 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{639} %argrw{"wr"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:640
 #     missingAlpha = 1;
 	assign		missingAlpha $const2 	%line{640} %argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:39
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:39
 #     color filex_rgb = texture(filex, position[1], position[2],
-	compref		$tmp1 position $const2 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl"} %line{39} %argrw{"wrr"}
+	compref		$tmp1 position $const2 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl"} %line{39} %argrw{"wrr"}
 	compref		$tmp2 position $const3 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:42
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:42
 #                               "missingalpha", missingAlpha);
 	texture		filex_rgb filex $tmp1 $tmp2 $const4 filex_a $const5 layerx $const6 missingColor $const7 missingAlpha 	%line{42} %argrw{"wrrrrwrrrrrr"} %argderivs{2,3}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:45
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:45
 #     color filey_rgb = texture(filey, position[0], position[2],
 	compref		$tmp3 position $const8 	%line{45} %argrw{"wrr"}
 	compref		$tmp4 position $const3 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:48
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:48
 #                               "missingalpha", missingAlpha);
 	texture		filey_rgb filey $tmp3 $tmp4 $const4 filey_a $const5 layery $const6 missingColor $const7 missingAlpha 	%line{48} %argrw{"wrrrrwrrrrrr"} %argderivs{2,3}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:51
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:51
 #     color filez_rgb = texture(filez, position[0], position[1],
 	compref		$tmp5 position $const8 	%line{51} %argrw{"wrr"}
 	compref		$tmp6 position $const2 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:54
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:54
 #                               "missingalpha", missingAlpha);
 	texture		filez_rgb filez $tmp5 $tmp6 $const4 filez_a $const5 layerz $const6 missingColor $const7 missingAlpha 	%line{54} %argrw{"wrrrrwrrrrrr"} %argderivs{2,3}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:56
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:56
 #     normal nIn = normalize(inN);
 	normalize	nIn inN 	%line{56} %argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:57
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:57
 #     float blendx = dot(nIn, vector(1, 0, 0));
 	dot		blendx nIn $const9 	%line{57} %argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:58
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:58
 #     float blendy = dot(nIn, vector(0, 1, 0));
 	dot		blendy nIn $const10 	%line{58} %argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:59
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:59
 #     float blendz = dot(nIn, vector(0, 0, 1));
 	dot		blendz nIn $const11 	%line{59} %argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:61
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:61
 #     color rgb = (filex_rgb * blendx) + (filey_rgb * blendy) + (filez_rgb * blendz);
 	mul		$tmp10 filex_rgb blendx 	%line{61} %argrw{"wrr"}
 	mul		$tmp11 filey_rgb blendy 	%argrw{"wrr"}
 	add		$tmp12 $tmp10 $tmp11 	%argrw{"wrr"}
 	mul		$tmp13 filez_rgb blendz 	%argrw{"wrr"}
 	add		rgb $tmp12 $tmp13 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:62
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:62
 #     float alpha = (filex_a * blendx) + (filey_a * blendy) + (filez_a * blendz);
 	mul		$tmp14 filex_a blendx 	%line{62} %argrw{"wrr"}
 	mul		$tmp15 filey_a blendy 	%argrw{"wrr"}
 	add		$tmp16 $tmp14 $tmp15 	%argrw{"wrr"}
 	mul		$tmp17 filez_a blendz 	%argrw{"wrr"}
 	add		alpha $tmp16 $tmp17 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:64
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_triplanarprojection_vector.osl:64
 #     out = pack (rgb, alpha);
 	functioncall	$const12 30 	%line{64} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:725
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:725
 #     return (vector)rgb;
-	assign		out rgb 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{725} %argrw{"wr"}
+	assign		out rgb 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{725} %argrw{"wr"}
 	end

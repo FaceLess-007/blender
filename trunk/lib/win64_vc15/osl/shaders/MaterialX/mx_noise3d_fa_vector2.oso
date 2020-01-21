@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.oso
 shader mx_noise3d_fa_vector2	%meta{string,help,"3D noise"} 
 param	point	position	0 0 0		%meta{string,help,"input coordinate position (default: object space P)"} %meta{int,lockgeom,0}  %read{3,3} %write{1,1} %derivs %initexpr
 param	float	amplitude	1		%meta{string,help,"center-to-peak amplitude of the noise"}  %read{7,8} %write{2147483647,-1}
@@ -28,49 +28,49 @@ const	string	$const8	"__operator__add__"		%read{12,15} %write{2147483647,-1}
 temp	float	$tmp3.x	%read{16,16} %write{13,13}
 temp	float	$tmp3.y	%read{17,17} %write{14,14}
 code position
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl:12
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl:12
 #     point position = transform("object", P)
-	functioncall	$const2 2 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl"} %line{12} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:267
+	functioncall	$const2 2 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl"} %line{12} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h:267
 # point  transform (string to, point p)  { return transform("common",to,p); }
-	transform	position $const3 $const1 P 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h"} %line{267} %argrw{"wrrr"}
+	transform	position $const3 $const1 P 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\stdosl.h"} %line{267} %argrw{"wrrr"}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl:28
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl:28
 #     vector2 n = noise (noisetype, position);
-	functioncall	$const4 6 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl"} %line{28} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:283
+	functioncall	$const4 6 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl"} %line{28} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:283
 #     color cnoise = (color) noise (noisetype, position);
-	noise		___528_cnoise noisetype position 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{283} %argrw{"wrr"} %argderivs{2}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:284
+	noise		___528_cnoise noisetype position 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h"} %line{283} %argrw{"wrr"} %argderivs{2}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\MaterialX\mx_funcs.h:284
 #     return vector2 (cnoise[0], cnoise[1]);
 	compref		n.x ___528_cnoise $const5 	%line{284} %argrw{"wrr"}
 	compref		n.y ___528_cnoise $const6 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl:31
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl:31
 # 
-	functioncall	$const7 12 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl"} %line{31} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:88
+	functioncall	$const7 12 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl"} %line{31} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:88
 #     return a * vector2(b, b);
-	assign		$tmp2.x amplitude 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h"} %line{88} %argrw{"wr"}
+	assign		$tmp2.x amplitude 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h"} %line{88} %argrw{"wr"}
 	assign		$tmp2.y amplitude 	%argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl:31
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl:31
 # 
-	functioncall	$const7 12 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl"} %line{31} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:78
+	functioncall	$const7 12 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl"} %line{31} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:78
 #     return vector2(a.x * b.x, a.y * b.y);
-	mul		$tmp1.x n.x $tmp2.x 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h"} %line{78} %argrw{"wrr"}
+	mul		$tmp1.x n.x $tmp2.x 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h"} %line{78} %argrw{"wrr"}
 	mul		$tmp1.y n.y $tmp2.y 	%argrw{"wrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl:31
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl:31
 # 
-	functioncall	$const8 18 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl"} %line{31} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:48
+	functioncall	$const8 18 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl"} %line{31} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:48
 #     return vector2(a, a) + b;
-	assign		$tmp3.x pivot 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h"} %line{48} %argrw{"wr"}
+	assign		$tmp3.x pivot 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h"} %line{48} %argrw{"wr"}
 	assign		$tmp3.y pivot 	%argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl:31
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl:31
 # 
-	functioncall	$const8 18 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl"} %line{31} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:28
+	functioncall	$const8 18 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_noise3d_fa_vector2.osl"} %line{31} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:28
 #     return vector2(a.x + b.x, a.y + b.y);
-	add		out.x $tmp3.x $tmp1.x 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h"} %line{28} %argrw{"wrr"}
+	add		out.x $tmp3.x $tmp1.x 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h"} %line{28} %argrw{"wrr"}
 	add		out.y $tmp3.y $tmp1.y 	%argrw{"wrr"}
 	end

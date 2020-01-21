@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_dotproduct_vector4.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_dotproduct_vector4.oso
 shader mx_dotproduct_vector4	%meta{string,help,"Vector4 Perform a dot product of two 2-4 channel vectors"} 
 param	struct vector4	in1			%read{2147483647,-1} %write{2147483647,-1} %struct{"vector4"} %structfields{x,y,z,w} %structfieldtypes{"ffff"} %structnfields{4}
 param	float	in1.x	0		%read{1,1} %write{2147483647,-1} %mystruct{in1} %mystructfield{0}
@@ -21,12 +21,12 @@ temp	float	$tmp4	%read{5,5} %write{4,4}
 temp	float	$tmp5	%read{7,7} %write{5,5}
 temp	float	$tmp6	%read{7,7} %write{6,6}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_dotproduct_vector4.osl:17
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_dotproduct_vector4.osl:17
 #     out = dot(in1, in2); 
-	functioncall	$const1 8 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_dotproduct_vector4.osl"} %line{17} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:178
+	functioncall	$const1 8 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_dotproduct_vector4.osl"} %line{17} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:178
 #     return ((a.x * b.x) + (a.y * b.y) + (a.z * b.z) + (a.w * b.w));
-	mul		$tmp1 in1.x in2.x 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h"} %line{178} %argrw{"wrr"}
+	mul		$tmp1 in1.x in2.x 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h"} %line{178} %argrw{"wrr"}
 	mul		$tmp2 in1.y in2.y 	%argrw{"wrr"}
 	add		$tmp3 $tmp1 $tmp2 	%argrw{"wrr"}
 	mul		$tmp4 in1.z in2.z 	%argrw{"wrr"}

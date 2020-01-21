@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_invert_vector2.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_invert_vector2.oso
 shader mx_invert_vector2	%meta{string,help,"Vector2 Subtract the incoming float/color/vector from amount in all channels,"} 
 param	struct vector2	in			%read{2147483647,-1} %write{2147483647,-1} %struct{"vector2"} %structfields{x,y} %structfieldtypes{"ff"} %structnfields{2}
 param	float	in.x	0		%read{1,1} %write{2147483647,-1} %mystruct{in} %mystructfield{0}
@@ -13,11 +13,11 @@ oparam	float	out.x	0		%read{2147483647,-1} %write{1,1} %mystruct{out} %mystructf
 oparam	float	out.y	0		%read{2147483647,-1} %write{2,2} %mystruct{out} %mystructfield{1}
 const	string	$const1	"__operator__sub__"		%read{0,0} %write{2147483647,-1}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_invert_vector2.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_invert_vector2.osl:19
 # 
-	functioncall	$const1 3 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_invert_vector2.osl"} %line{19} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:53
+	functioncall	$const1 3 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_invert_vector2.osl"} %line{19} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:53
 #     return vector2(a.x - b.x, a.y - b.y);
-	sub		out.x amount.x in.x 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h"} %line{53} %argrw{"wrr"}
+	sub		out.x amount.x in.x 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h"} %line{53} %argrw{"wrr"}
 	sub		out.y amount.y in.y 	%argrw{"wrr"}
 	end

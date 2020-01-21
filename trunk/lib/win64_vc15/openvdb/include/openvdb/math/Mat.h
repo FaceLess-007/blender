@@ -1,32 +1,5 @@
-///////////////////////////////////////////////////////////////////////////
-//
-// Copyright (c) 2012-2018 DreamWorks Animation LLC
-//
-// All rights reserved. This software is distributed under the
-// Mozilla Public License 2.0 ( http://www.mozilla.org/MPL/2.0/ )
-//
-// Redistributions of source code must retain the above copyright
-// and license notice and the following restrictions and disclaimer.
-//
-// *     Neither the name of DreamWorks Animation nor the names of
-// its contributors may be used to endorse or promote products derived
-// from this software without specific prior written permission.
-//
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY INDIRECT, INCIDENTAL,
-// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-// IN NO EVENT SHALL THE COPYRIGHT HOLDERS' AND CONTRIBUTORS' AGGREGATE
-// LIABILITY FOR ALL CLAIMS REGARDLESS OF THEIR BASIS EXCEED US$250.00.
-//
-///////////////////////////////////////////////////////////////////////////
+// Copyright Contributors to the OpenVDB Project
+// SPDX-License-Identifier: MPL-2.0
 //
 /// @file Mat.h
 /// @author Joshua Schpok
@@ -159,7 +132,7 @@ public:
     /// True if a Nan is present in this matrix
     bool isNan() const {
         for (unsigned i = 0; i < numElements(); ++i) {
-            if (std::isnan(mm[i])) return true;
+            if (math::isNan(mm[i])) return true;
         }
         return false;
     }
@@ -167,7 +140,7 @@ public:
     /// True if an Inf is present in this matrix
     bool isInfinite() const {
         for (unsigned i = 0; i < numElements(); ++i) {
-            if (std::isinf(mm[i])) return true;
+            if (math::isInfinite(mm[i])) return true;
         }
         return false;
     }
@@ -175,7 +148,7 @@ public:
     /// True if no Nan or Inf values are present
     bool isFinite() const {
         for (unsigned i = 0; i < numElements(); ++i) {
-            if (!std::isfinite(mm[i])) return false;
+            if (!math::isFinite(mm[i])) return false;
         }
         return true;
     }
@@ -183,7 +156,7 @@ public:
     /// True if all elements are exactly zero
     bool isZero() const {
         for (unsigned i = 0; i < numElements(); ++i) {
-            if (!isZero(mm[i])) return false;
+            if (!math::isZero(mm[i])) return false;
         }
         return true;
     }
@@ -528,31 +501,33 @@ eulerAngles(
 
 /// @brief Return a rotation matrix that maps @a v1 onto @a v2
 /// about the cross product of @a v1 and @a v2.
-template<class MatType>
-MatType
+/// <a name="rotation_v1_v2"></a>
+template<typename MatType, typename ValueType1, typename ValueType2>
+inline MatType
 rotation(
-    const Vec3<typename MatType::value_type>& _v1,
-    const Vec3<typename MatType::value_type>& _v2,
-    typename MatType::value_type eps=1.0e-8)
+    const Vec3<ValueType1>& _v1,
+    const Vec3<ValueType2>& _v2,
+    typename MatType::value_type eps = static_cast<typename MatType::value_type>(1.0e-8))
 {
     using T = typename MatType::value_type;
+
     Vec3<T> v1(_v1);
     Vec3<T> v2(_v2);
 
     // Check if v1 and v2 are unit length
-    if (!isApproxEqual(1.0, v1.dot(v1), eps)) {
+    if (!isApproxEqual(T(1), v1.dot(v1), eps)) {
         v1.normalize();
     }
-    if (!isApproxEqual(1.0, v2.dot(v2), eps)) {
+    if (!isApproxEqual(T(1), v2.dot(v2), eps)) {
         v2.normalize();
     }
 
     Vec3<T> cross;
     cross.cross(v1, v2);
 
-    if (isApproxEqual(cross[0], 0.0, eps) &&
-        isApproxEqual(cross[1], 0.0, eps) &&
-        isApproxEqual(cross[2], 0.0, eps)) {
+    if (isApproxEqual(cross[0], zeroVal<T>(), eps) &&
+        isApproxEqual(cross[1], zeroVal<T>(), eps) &&
+        isApproxEqual(cross[2], zeroVal<T>(), eps)) {
 
 
         // Given two unit vectors v1 and v2 that are nearly parallel, build a
@@ -598,8 +573,8 @@ rotation(
 
         for (int j = 0; j < 3; j++) {
             for (int i = 0; i < 3; i++)
-                result[i][j] =
-                    a * u[i] * u[j] + b * v[i] * v[j] + c * v[j] * u[i];
+                result[i][j] = static_cast<T>(
+                    a * u[i] * u[j] + b * v[i] * v[j] + c * v[j] * u[i]);
         }
         result[0][0] += 1.0;
         result[1][1] += 1.0;
@@ -622,15 +597,15 @@ rotation(
 
         MatType r;
 
-        r[0][0] = c + a0 * cross[0];
-        r[0][1] = a01 + cross[2];
-        r[0][2] = a02 - cross[1],
-        r[1][0] = a01 - cross[2];
-        r[1][1] = c + a1 * cross[1];
-        r[1][2] = a12 + cross[0];
-        r[2][0] = a02 + cross[1];
-        r[2][1] = a12 - cross[0];
-        r[2][2] = c + a2 * cross[2];
+        r[0][0] = static_cast<T>(c + a0 * cross[0]);
+        r[0][1] = static_cast<T>(a01 + cross[2]);
+        r[0][2] = static_cast<T>(a02 - cross[1]);
+        r[1][0] = static_cast<T>(a01 - cross[2]);
+        r[1][1] = static_cast<T>(c + a1 * cross[1]);
+        r[1][2] = static_cast<T>(a12 + cross[0]);
+        r[2][0] = static_cast<T>(a02 + cross[1]);
+        r[2][1] = static_cast<T>(a12 - cross[0]);
+        r[2][2] = static_cast<T>(c + a2 * cross[2]);
 
         if(MatType::numColumns() == 4) padMat4(r);
         return r;
@@ -809,7 +784,7 @@ snapMatBasis(const MatType& source, Axis axis, const Vec3<typename MatType::valu
 /// @brief Write 0s along Mat4's last row and column, and a 1 on its diagonal.
 /// @details Useful initialization when we're initializing just the 3&times;3 block.
 template<class MatType>
-static MatType&
+inline MatType&
 padMat4(MatType& dest)
 {
     dest[0][3] = dest[1][3] = dest[2][3] = 0;
@@ -1042,7 +1017,3 @@ polarDecomposition(const MatType& input, MatType& unitary,
 } // namespace openvdb
 
 #endif // OPENVDB_MATH_MAT_HAS_BEEN_INCLUDED
-
-// Copyright (c) 2012-2018 DreamWorks Animation LLC
-// All rights reserved. This software is distributed under the
-// Mozilla Public License 2.0 ( http://www.mozilla.org/MPL/2.0/ )

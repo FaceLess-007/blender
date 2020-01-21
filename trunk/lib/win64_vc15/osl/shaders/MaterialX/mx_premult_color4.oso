@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_premult_color4.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_premult_color4.oso
 shader mx_premult_color4	%meta{string,help,"Color4 Multiply the R or RGB channels of the input by the Alpha channel of the input."} 
 param	struct color4	in			%read{2147483647,-1} %write{2147483647,-1} %struct{"color4"} %structfields{rgb,a} %structfieldtypes{"cf"} %structnfields{2}
 param	color	in.rgb	0 0 0		%read{1,1} %write{2147483647,-1} %mystruct{in} %mystructfield{0}
@@ -11,10 +11,10 @@ oparam	color	out.rgb	0 0 0		%read{2147483647,-1} %write{1,1} %mystruct{out} %mys
 oparam	float	out.a	0		%read{2147483647,-1} %write{2,2} %mystruct{out} %mystructfield{1}
 const	string	$const1	"premult"		%read{0,0} %write{2147483647,-1}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_premult_color4.osl:38
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_premult_color4.osl:38
 #     out = premult (in, alpha);
-	functioncall	$const1 3 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_premult_color4.osl"} %line{38} %argrw{"r"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_premult_color4.osl:25
+	functioncall	$const1 3 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_premult_color4.osl"} %line{38} %argrw{"r"}
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_premult_color4.osl:25
 #     return color4 (in.rgb * in.a, in.a);
 	mul		out.rgb in.rgb in.a 	%line{25} %argrw{"wrr"}
 	assign		out.a in.a 	%argrw{"wr"}

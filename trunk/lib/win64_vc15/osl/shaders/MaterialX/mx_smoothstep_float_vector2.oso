@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_smoothstep_float_vector2.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_smoothstep_float_vector2.oso
 shader mx_smoothstep_float_vector2	%meta{string,help,"outputs a smooth (hermite-interpolated) remapping of input values from low-high to output 0-1."} 
 param	struct vector2	in			%meta{string,help,"input"}  %read{2147483647,-1} %write{2147483647,-1} %struct{"vector2"} %structfields{x,y} %structfieldtypes{"ff"} %structnfields{2}
 param	float	in.x	0		%meta{string,help,"input"}  %read{1,1} %write{2147483647,-1} %mystruct{in} %mystructfield{0}
@@ -12,13 +12,13 @@ oparam	float	out.x	0		%read{2147483647,-1} %write{1,1} %mystruct{out} %mystructf
 oparam	float	out.y	0		%read{2147483647,-1} %write{2,2} %mystruct{out} %mystructfield{1}
 const	string	$const1	"smoothstep"		%read{0,0} %write{2147483647,-1}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_smoothstep_float_vector2.osl:21
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_smoothstep_float_vector2.osl:21
 #     out = smoothstep(low, high, in);
-	functioncall	$const1 3 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_smoothstep_float_vector2.osl"} %line{21} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:178
+	functioncall	$const1 3 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_smoothstep_float_vector2.osl"} %line{21} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:178
 #     return vector2 (smoothstep(low, high, in.x),
-	smoothstep	out.x low high in.x 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h"} %line{178} %argrw{"wrrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:179
+	smoothstep	out.x low high in.x 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h"} %line{178} %argrw{"wrrr"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector2.h:179
 #                     smoothstep(low, high, in.y));
 	smoothstep	out.y low high in.y 	%line{179} %argrw{"wrrr"}
 	end

@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_float.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_float.oso
 shader mx_overlay_float	%meta{string,help,"Float overlay composite operator"} 
 param	float	fg	0		%read{1,5} %write{2147483647,-1}
 param	float	bg	0		%read{4,6} %write{2147483647,-1}
@@ -15,10 +15,10 @@ const	float	$const6	1		%read{5,8} %write{2147483647,-1}
 temp	float	$tmp4	%read{7,7} %write{6,6}
 temp	float	$tmp5	%read{8,8} %write{7,7}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_float.osl:44
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_float.osl:44
 #     out = overlay(fg, bg); 
-	functioncall	$const1 10 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_float.osl"} %line{44} %argrw{"r"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_float.osl:12
+	functioncall	$const1 10 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_float.osl"} %line{44} %argrw{"r"}
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_float.osl:12
 #     return (fg < 0.5) ? (2 * fg * bg) : (1 - (1 - fg) * (1 - bg));
 	lt		$tmp1 fg $const2 	%line{12} %argrw{"wrr"}
 	if		$tmp1 5 9 	%argrw{"r"}

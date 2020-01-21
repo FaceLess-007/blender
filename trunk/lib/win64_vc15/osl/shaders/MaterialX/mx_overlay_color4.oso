@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.oso
 shader mx_overlay_color4	%meta{string,help,"Color4 overlay composite operator"} 
 param	struct color4	fg			%read{2147483647,-1} %write{2147483647,-1} %struct{"color4"} %structfields{rgb,a} %structfieldtypes{"cf"} %structnfields{2}
 param	color	fg.rgb	0 0 0		%read{2,26} %write{2147483647,-1} %mystruct{fg} %mystructfield{0}
@@ -48,18 +48,18 @@ temp	float	$tmp27	%read{46,46} %write{44,44}
 temp	float	$tmp28	%read{46,46} %write{45,45}
 temp	float	$tmp29	%read{47,47} %write{46,46}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:44
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:44
 #     out = overlay(fg, bg); 
-	functioncall	$const1 49 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl"} %line{44} %argrw{"r"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:30
+	functioncall	$const1 49 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl"} %line{44} %argrw{"r"}
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:30
 #     return color4(overlay(fg.rgb, bg.rgb),
 	functioncall	$const1 39 	%line{30} %argrw{"r"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:17
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:17
 #     return color(overlay(fg[0], bg[0]),
 	compref		$tmp2 fg.rgb $const2 	%line{17} %argrw{"wrr"}
 	compref		$tmp3 bg.rgb $const2 	%argrw{"wrr"}
 	functioncall	$const1 14 	%argrw{"r"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:12
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:12
 #     return (fg < 0.5) ? (2 * fg * bg) : (1 - (1 - fg) * (1 - bg));
 	lt		$tmp4 $tmp2 $const3 	%line{12} %argrw{"wrr"}
 	if		$tmp4 9 13 	%argrw{"r"}
@@ -70,12 +70,12 @@ code ___main___
 	mul		$tmp8 $tmp6 $tmp7 	%argrw{"wrr"}
 	sub		$tmp1 $const7 $tmp8 	%argrw{"wrr"}
 	return
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:18
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:18
 #                  overlay(fg[1], bg[1]),
 	compref		$tmp10 fg.rgb $const6 	%line{18} %argrw{"wrr"}
 	compref		$tmp11 bg.rgb $const6 	%argrw{"wrr"}
 	functioncall	$const1 26 	%argrw{"r"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:12
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:12
 #     return (fg < 0.5) ? (2 * fg * bg) : (1 - (1 - fg) * (1 - bg));
 	lt		$tmp12 $tmp10 $const3 	%line{12} %argrw{"wrr"}
 	if		$tmp12 21 25 	%argrw{"r"}
@@ -86,12 +86,12 @@ code ___main___
 	mul		$tmp16 $tmp14 $tmp15 	%argrw{"wrr"}
 	sub		$tmp9 $const7 $tmp16 	%argrw{"wrr"}
 	return
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:19
 #                  overlay(fg[2], bg[2]));
 	compref		$tmp18 fg.rgb $const4 	%line{19} %argrw{"wrr"}
 	compref		$tmp19 bg.rgb $const4 	%argrw{"wrr"}
 	functioncall	$const1 38 	%argrw{"r"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:12
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:12
 #     return (fg < 0.5) ? (2 * fg * bg) : (1 - (1 - fg) * (1 - bg));
 	lt		$tmp20 $tmp18 $const3 	%line{12} %argrw{"wrr"}
 	if		$tmp20 33 37 	%argrw{"r"}
@@ -102,13 +102,13 @@ code ___main___
 	mul		$tmp24 $tmp22 $tmp23 	%argrw{"wrr"}
 	sub		$tmp17 $const7 $tmp24 	%argrw{"wrr"}
 	return
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:19
 #                  overlay(fg[2], bg[2]));
 	color		out.rgb $tmp1 $tmp9 $tmp17 	%line{19} %argrw{"wrrr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:31
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:31
 #                   overlay(fg.a, bg.a));
 	functioncall	$const1 49 	%line{31} %argrw{"r"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:12
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_overlay_color4.osl:12
 #     return (fg < 0.5) ? (2 * fg * bg) : (1 - (1 - fg) * (1 - bg));
 	lt		$tmp25 fg.a $const3 	%line{12} %argrw{"wrr"}
 	if		$tmp25 44 48 	%argrw{"r"}

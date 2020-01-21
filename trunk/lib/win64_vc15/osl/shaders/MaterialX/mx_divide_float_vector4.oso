@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_divide_float_vector4.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_divide_float_vector4.oso
 shader mx_divide_float_vector4	%meta{string,help,"Vector4 Divide an incoming float/color/vector by the in2"} 
 param	struct vector4	in1			%read{2147483647,-1} %write{2147483647,-1} %struct{"vector4"} %structfields{x,y,z,w} %structfieldtypes{"ffff"} %structnfields{4}
 param	float	in1.x	0		%read{7,7} %write{2147483647,-1} %mystruct{in1} %mystructfield{0}
@@ -22,24 +22,24 @@ temp	float	$tmp1.z	%read{9,9} %write{4,4}
 temp	float	$tmp1.w	%read{10,10} %write{5,5}
 const	string	$const4	"__operator__mul__"		%read{6,6} %write{2147483647,-1}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_divide_float_vector4.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_divide_float_vector4.osl:19
 # 
-	functioncall	$const1 11 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_divide_float_vector4.osl"} %line{19} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:116
+	functioncall	$const1 11 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_divide_float_vector4.osl"} %line{19} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:116
 #     float b_inv = 1/b;
-	div		___463_b_inv $const3 in2 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h"} %line{116} %argrw{"wrr"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:117
+	div		___463_b_inv $const3 in2 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h"} %line{116} %argrw{"wrr"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:117
 #     return a * vector4(b_inv, b_inv, b_inv, b_inv);
 	assign		$tmp1.x ___463_b_inv 	%line{117} %argrw{"wr"}
 	assign		$tmp1.y ___463_b_inv 	%argrw{"wr"}
 	assign		$tmp1.z ___463_b_inv 	%argrw{"wr"}
 	assign		$tmp1.w ___463_b_inv 	%argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_divide_float_vector4.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_divide_float_vector4.osl:19
 # 
-	functioncall	$const4 11 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_divide_float_vector4.osl"} %line{19} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:80
+	functioncall	$const4 11 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_divide_float_vector4.osl"} %line{19} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:80
 #     return vector4(a.x * b.x, a.y * b.y, a.z * b.z, a.w * b.w);
-	mul		out.x in1.x $tmp1.x 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h"} %line{80} %argrw{"wrr"}
+	mul		out.x in1.x $tmp1.x 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h"} %line{80} %argrw{"wrr"}
 	mul		out.y in1.y $tmp1.y 	%argrw{"wrr"}
 	mul		out.z in1.z $tmp1.z 	%argrw{"wrr"}
 	mul		out.w in1.w $tmp1.w 	%argrw{"wrr"}

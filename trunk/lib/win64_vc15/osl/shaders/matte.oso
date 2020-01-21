@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/matte.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/matte.oso
 surface matte	%meta{string,help,"Lambertian diffuse material"} 
 param	float	Kd	1		%meta{string,help,"Diffuse scaling"} %meta{float,min,0} %meta{float,max,1}  %read{1,1} %write{2147483647,-1}
 param	color	Cs	1 1 1		%meta{string,help,"Base color"} %meta{float,min,0} %meta{float,max,1}  %read{1,1} %write{2147483647,-1}
@@ -10,9 +10,9 @@ temp	closure color	$tmp1	%read{2,2} %write{0,0}
 const	string	$const1	"diffuse"		%read{0,0} %write{2147483647,-1}
 temp	color	$tmp2	%read{2,2} %write{1,1}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/matte.osl:42
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/matte.osl:42
 #     Ci = Kd * Cs * diffuse (N);
-	closure		$tmp1 $const1 N 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/matte.osl"} %line{42} %argrw{"wrr"}
+	closure		$tmp1 $const1 N 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/matte.osl"} %line{42} %argrw{"wrr"}
 	mul		$tmp2 Kd Cs 	%argrw{"wrr"}
 	mul		Ci $tmp1 $tmp2 	%argrw{"wrr"}
 	end

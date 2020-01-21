@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.9.9
-# options: -q -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db15/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_add_float_vector4.oso
+# options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/MaterialX -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_add_float_vector4.oso
 shader mx_add_float_vector4	%meta{string,help,"Vector4 add in2 to the incoming data"} 
 param	struct vector4	in1			%read{2147483647,-1} %write{2147483647,-1} %struct{"vector4"} %structfields{x,y,z,w} %structfieldtypes{"ffff"} %structnfields{4}
 param	float	in1.x	0		%read{6,6} %write{2147483647,-1} %mystruct{in1} %mystructfield{0}
@@ -19,21 +19,21 @@ temp	float	$tmp1.y	%read{7,7} %write{2,2}
 temp	float	$tmp1.z	%read{8,8} %write{3,3}
 temp	float	$tmp1.w	%read{9,9} %write{4,4}
 code ___main___
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_add_float_vector4.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_add_float_vector4.osl:19
 # 
-	functioncall	$const1 10 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_add_float_vector4.osl"} %line{19} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:40
+	functioncall	$const1 10 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_add_float_vector4.osl"} %line{19} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:40
 #     return a + vector4(b, b, b, b);
-	assign		$tmp1.x in2 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h"} %line{40} %argrw{"wr"}
+	assign		$tmp1.x in2 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h"} %line{40} %argrw{"wr"}
 	assign		$tmp1.y in2 	%argrw{"wr"}
 	assign		$tmp1.z in2 	%argrw{"wr"}
 	assign		$tmp1.w in2 	%argrw{"wr"}
-# E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_add_float_vector4.osl:19
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_add_float_vector4.osl:19
 # 
-	functioncall	$const1 10 	%filename{"E:/db15/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_add_float_vector4.osl"} %line{19} %argrw{"r"}
-# E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:30
+	functioncall	$const1 10 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/MaterialX/mx_add_float_vector4.osl"} %line{19} %argrw{"r"}
+# E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h:30
 #     return vector4(a.x + b.x, a.y + b.y, a.z + b.z, a.w + b.w);
-	add		out.x in1.x $tmp1.x 	%filename{"E:\db15\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h"} %line{30} %argrw{"wrr"}
+	add		out.x in1.x $tmp1.x 	%filename{"E:\db18\build\S\VS1564R\build\osl\src\external_osl\src\shaders\vector4.h"} %line{30} %argrw{"wrr"}
 	add		out.y in1.y $tmp1.y 	%argrw{"wrr"}
 	add		out.z in1.z $tmp1.z 	%argrw{"wrr"}
 	add		out.w in1.w $tmp1.w 	%argrw{"wrr"}
