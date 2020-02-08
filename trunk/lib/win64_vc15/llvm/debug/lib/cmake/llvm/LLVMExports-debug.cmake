@@ -154,6 +154,16 @@ set_target_properties(LLVMBitWriter PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS LLVMBitWriter )
 list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMBitWriter "${_IMPORT_PREFIX}/lib/LLVMBitWriter.lib" )
 
+# Import target "LLVMBitstreamReader" for configuration "Debug"
+set_property(TARGET LLVMBitstreamReader APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(LLVMBitstreamReader PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/LLVMBitstreamReader.lib"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS LLVMBitstreamReader )
+list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMBitstreamReader "${_IMPORT_PREFIX}/lib/LLVMBitstreamReader.lib" )
+
 # Import target "LLVMTransformUtils" for configuration "Debug"
 set_property(TARGET LLVMTransformUtils APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(LLVMTransformUtils PROPERTIES
@@ -173,6 +183,16 @@ set_target_properties(LLVMInstrumentation PROPERTIES
 
 list(APPEND _IMPORT_CHECK_TARGETS LLVMInstrumentation )
 list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMInstrumentation "${_IMPORT_PREFIX}/lib/LLVMInstrumentation.lib" )
+
+# Import target "LLVMAggressiveInstCombine" for configuration "Debug"
+set_property(TARGET LLVMAggressiveInstCombine APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(LLVMAggressiveInstCombine PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/LLVMAggressiveInstCombine.lib"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS LLVMAggressiveInstCombine )
+list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMAggressiveInstCombine "${_IMPORT_PREFIX}/lib/LLVMAggressiveInstCombine.lib" )
 
 # Import target "LLVMInstCombine" for configuration "Debug"
 set_property(TARGET LLVMInstCombine APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
@@ -294,6 +314,16 @@ set_target_properties(LLVMMCDisassembler PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS LLVMMCDisassembler )
 list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMMCDisassembler "${_IMPORT_PREFIX}/lib/LLVMMCDisassembler.lib" )
 
+# Import target "LLVMMCA" for configuration "Debug"
+set_property(TARGET LLVMMCA APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(LLVMMCA PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/LLVMMCA.lib"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS LLVMMCA )
+list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMMCA "${_IMPORT_PREFIX}/lib/LLVMMCA.lib" )
+
 # Import target "LLVMObject" for configuration "Debug"
 set_property(TARGET LLVMObject APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(LLVMObject PROPERTIES
@@ -324,6 +354,16 @@ set_target_properties(LLVMOption PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS LLVMOption )
 list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMOption "${_IMPORT_PREFIX}/lib/LLVMOption.lib" )
 
+# Import target "LLVMRemarks" for configuration "Debug"
+set_property(TARGET LLVMRemarks APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(LLVMRemarks PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/LLVMRemarks.lib"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS LLVMRemarks )
+list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMRemarks "${_IMPORT_PREFIX}/lib/LLVMRemarks.lib" )
+
 # Import target "LLVMDebugInfoDWARF" for configuration "Debug"
 set_property(TARGET LLVMDebugInfoDWARF APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(LLVMDebugInfoDWARF PROPERTIES
@@ -333,6 +373,16 @@ set_target_properties(LLVMDebugInfoDWARF PROPERTIES
 
 list(APPEND _IMPORT_CHECK_TARGETS LLVMDebugInfoDWARF )
 list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMDebugInfoDWARF "${_IMPORT_PREFIX}/lib/LLVMDebugInfoDWARF.lib" )
+
+# Import target "LLVMDebugInfoGSYM" for configuration "Debug"
+set_property(TARGET LLVMDebugInfoGSYM APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(LLVMDebugInfoGSYM PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/LLVMDebugInfoGSYM.lib"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS LLVMDebugInfoGSYM )
+list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMDebugInfoGSYM "${_IMPORT_PREFIX}/lib/LLVMDebugInfoGSYM.lib" )
 
 # Import target "LLVMDebugInfoMSF" for configuration "Debug"
 set_property(TARGET LLVMDebugInfoMSF APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
@@ -393,6 +443,16 @@ set_target_properties(LLVMInterpreter PROPERTIES
 
 list(APPEND _IMPORT_CHECK_TARGETS LLVMInterpreter )
 list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMInterpreter "${_IMPORT_PREFIX}/lib/LLVMInterpreter.lib" )
+
+# Import target "LLVMJITLink" for configuration "Debug"
+set_property(TARGET LLVMJITLink APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(LLVMJITLink PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/LLVMJITLink.lib"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS LLVMJITLink )
+list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMJITLink "${_IMPORT_PREFIX}/lib/LLVMJITLink.lib" )
 
 # Import target "LLVMMCJIT" for configuration "Debug"
 set_property(TARGET LLVMMCJIT APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
@@ -463,16 +523,6 @@ set_target_properties(LLVMX86Disassembler PROPERTIES
 
 list(APPEND _IMPORT_CHECK_TARGETS LLVMX86Disassembler )
 list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMX86Disassembler "${_IMPORT_PREFIX}/lib/LLVMX86Disassembler.lib" )
-
-# Import target "LLVMX86AsmPrinter" for configuration "Debug"
-set_property(TARGET LLVMX86AsmPrinter APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(LLVMX86AsmPrinter PROPERTIES
-  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/LLVMX86AsmPrinter.lib"
-  )
-
-list(APPEND _IMPORT_CHECK_TARGETS LLVMX86AsmPrinter )
-list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMX86AsmPrinter "${_IMPORT_PREFIX}/lib/LLVMX86AsmPrinter.lib" )
 
 # Import target "LLVMX86Desc" for configuration "Debug"
 set_property(TARGET LLVMX86Desc APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
@@ -554,6 +604,16 @@ set_target_properties(LLVMPasses PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS LLVMPasses )
 list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMPasses "${_IMPORT_PREFIX}/lib/LLVMPasses.lib" )
 
+# Import target "LLVMTextAPI" for configuration "Debug"
+set_property(TARGET LLVMTextAPI APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(LLVMTextAPI PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/LLVMTextAPI.lib"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS LLVMTextAPI )
+list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMTextAPI "${_IMPORT_PREFIX}/lib/LLVMTextAPI.lib" )
+
 # Import target "LLVMDlltoolDriver" for configuration "Debug"
 set_property(TARGET LLVMDlltoolDriver APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(LLVMDlltoolDriver PROPERTIES
@@ -597,11 +657,12 @@ list(APPEND _IMPORT_CHECK_FILES_FOR_LLVMWindowsManifest "${_IMPORT_PREFIX}/lib/L
 # Import target "LTO" for configuration "Debug"
 set_property(TARGET LTO APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(LTO PROPERTIES
+  IMPORTED_IMPLIB_DEBUG "${_IMPORT_PREFIX}/lib/LTO.lib"
   IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/LTO.dll"
   )
 
 list(APPEND _IMPORT_CHECK_TARGETS LTO )
-list(APPEND _IMPORT_CHECK_FILES_FOR_LTO "${_IMPORT_PREFIX}/bin/LTO.dll" )
+list(APPEND _IMPORT_CHECK_FILES_FOR_LTO "${_IMPORT_PREFIX}/lib/LTO.lib" "${_IMPORT_PREFIX}/bin/LTO.dll" )
 
 # Import target "llvm-ar" for configuration "Debug"
 set_property(TARGET llvm-ar APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
@@ -648,14 +709,14 @@ set_target_properties(bugpoint PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS bugpoint )
 list(APPEND _IMPORT_CHECK_FILES_FOR_bugpoint "${_IMPORT_PREFIX}/bin/bugpoint.exe" )
 
-# Import target "llvm-dsymutil" for configuration "Debug"
-set_property(TARGET llvm-dsymutil APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(llvm-dsymutil PROPERTIES
-  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/llvm-dsymutil.exe"
+# Import target "dsymutil" for configuration "Debug"
+set_property(TARGET dsymutil APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(dsymutil PROPERTIES
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/dsymutil.exe"
   )
 
-list(APPEND _IMPORT_CHECK_TARGETS llvm-dsymutil )
-list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-dsymutil "${_IMPORT_PREFIX}/bin/llvm-dsymutil.exe" )
+list(APPEND _IMPORT_CHECK_TARGETS dsymutil )
+list(APPEND _IMPORT_CHECK_FILES_FOR_dsymutil "${_IMPORT_PREFIX}/bin/dsymutil.exe" )
 
 # Import target "llc" for configuration "Debug"
 set_property(TARGET llc APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
@@ -756,6 +817,15 @@ set_target_properties(llvm-cxxfilt PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS llvm-cxxfilt )
 list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-cxxfilt "${_IMPORT_PREFIX}/bin/llvm-cxxfilt.exe" )
 
+# Import target "llvm-cxxmap" for configuration "Debug"
+set_property(TARGET llvm-cxxmap APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(llvm-cxxmap PROPERTIES
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/llvm-cxxmap.exe"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS llvm-cxxmap )
+list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-cxxmap "${_IMPORT_PREFIX}/bin/llvm-cxxmap.exe" )
+
 # Import target "llvm-diff" for configuration "Debug"
 set_property(TARGET llvm-diff APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(llvm-diff PROPERTIES
@@ -792,6 +862,24 @@ set_target_properties(llvm-dwp PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS llvm-dwp )
 list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-dwp "${_IMPORT_PREFIX}/bin/llvm-dwp.exe" )
 
+# Import target "llvm-elfabi" for configuration "Debug"
+set_property(TARGET llvm-elfabi APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(llvm-elfabi PROPERTIES
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/llvm-elfabi.exe"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS llvm-elfabi )
+list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-elfabi "${_IMPORT_PREFIX}/bin/llvm-elfabi.exe" )
+
+# Import target "llvm-exegesis" for configuration "Debug"
+set_property(TARGET llvm-exegesis APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(llvm-exegesis PROPERTIES
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/llvm-exegesis.exe"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS llvm-exegesis )
+list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-exegesis "${_IMPORT_PREFIX}/bin/llvm-exegesis.exe" )
+
 # Import target "llvm-extract" for configuration "Debug"
 set_property(TARGET llvm-extract APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(llvm-extract PROPERTIES
@@ -801,6 +889,15 @@ set_target_properties(llvm-extract PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS llvm-extract )
 list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-extract "${_IMPORT_PREFIX}/bin/llvm-extract.exe" )
 
+# Import target "llvm-jitlink" for configuration "Debug"
+set_property(TARGET llvm-jitlink APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(llvm-jitlink PROPERTIES
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/llvm-jitlink.exe"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS llvm-jitlink )
+list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-jitlink "${_IMPORT_PREFIX}/bin/llvm-jitlink.exe" )
+
 # Import target "llvm-link" for configuration "Debug"
 set_property(TARGET llvm-link APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(llvm-link PROPERTIES
@@ -809,6 +906,15 @@ set_target_properties(llvm-link PROPERTIES
 
 list(APPEND _IMPORT_CHECK_TARGETS llvm-link )
 list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-link "${_IMPORT_PREFIX}/bin/llvm-link.exe" )
+
+# Import target "llvm-lipo" for configuration "Debug"
+set_property(TARGET llvm-lipo APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(llvm-lipo PROPERTIES
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/llvm-lipo.exe"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS llvm-lipo )
+list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-lipo "${_IMPORT_PREFIX}/bin/llvm-lipo.exe" )
 
 # Import target "llvm-lto2" for configuration "Debug"
 set_property(TARGET llvm-lto2 APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
@@ -828,14 +934,14 @@ set_target_properties(llvm-mc PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS llvm-mc )
 list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-mc "${_IMPORT_PREFIX}/bin/llvm-mc.exe" )
 
-# Import target "llvm-mcmarkup" for configuration "Debug"
-set_property(TARGET llvm-mcmarkup APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(llvm-mcmarkup PROPERTIES
-  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/llvm-mcmarkup.exe"
+# Import target "llvm-mca" for configuration "Debug"
+set_property(TARGET llvm-mca APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(llvm-mca PROPERTIES
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/llvm-mca.exe"
   )
 
-list(APPEND _IMPORT_CHECK_TARGETS llvm-mcmarkup )
-list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-mcmarkup "${_IMPORT_PREFIX}/bin/llvm-mcmarkup.exe" )
+list(APPEND _IMPORT_CHECK_TARGETS llvm-mca )
+list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-mca "${_IMPORT_PREFIX}/bin/llvm-mca.exe" )
 
 # Import target "llvm-modextract" for configuration "Debug"
 set_property(TARGET llvm-modextract APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
@@ -972,6 +1078,15 @@ set_target_properties(llvm-symbolizer PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS llvm-symbolizer )
 list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-symbolizer "${_IMPORT_PREFIX}/bin/llvm-symbolizer.exe" )
 
+# Import target "llvm-undname" for configuration "Debug"
+set_property(TARGET llvm-undname APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(llvm-undname PROPERTIES
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/llvm-undname.exe"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS llvm-undname )
+list(APPEND _IMPORT_CHECK_FILES_FOR_llvm-undname "${_IMPORT_PREFIX}/bin/llvm-undname.exe" )
+
 # Import target "llvm-xray" for configuration "Debug"
 set_property(TARGET llvm-xray APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(llvm-xray PROPERTIES
@@ -998,6 +1113,16 @@ set_target_properties(opt PROPERTIES
 
 list(APPEND _IMPORT_CHECK_TARGETS opt )
 list(APPEND _IMPORT_CHECK_FILES_FOR_opt "${_IMPORT_PREFIX}/bin/opt.exe" )
+
+# Import target "Remarks" for configuration "Debug"
+set_property(TARGET Remarks APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(Remarks PROPERTIES
+  IMPORTED_IMPLIB_DEBUG "${_IMPORT_PREFIX}/lib/Remarks.lib"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/Remarks.dll"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS Remarks )
+list(APPEND _IMPORT_CHECK_FILES_FOR_Remarks "${_IMPORT_PREFIX}/lib/Remarks.lib" "${_IMPORT_PREFIX}/bin/Remarks.dll" )
 
 # Import target "sancov" for configuration "Debug"
 set_property(TARGET sancov APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)

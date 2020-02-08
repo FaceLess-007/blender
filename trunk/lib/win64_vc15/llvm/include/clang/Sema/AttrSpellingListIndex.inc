@@ -7,6 +7,15 @@
 \*===----------------------------------------------------------------------===*/
 
   switch (AttrKind) {
+  case AT_AArch64VectorPcs: {
+    if (Name == "aarch64_vector_pcs" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "aarch64_vector_pcs" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "aarch64_vector_pcs" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
   case AT_AMDGPUFlatWorkGroupSize: {
     if (Name == "amdgpu_flat_work_group_size" && SyntaxUsed == 0 && Scope == "")
         return 0;
@@ -86,6 +95,8 @@
         return 0;
     if (Name == "address_space" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "address_space" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_Alias: {
@@ -127,6 +138,13 @@
         return 1;
     break;
   }
+  case AT_AlwaysDestroy: {
+    if (Name == "always_destroy" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "always_destroy" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    break;
+  }
   case AT_AlwaysInline: {
     if (Name == "always_inline" && SyntaxUsed == 0 && Scope == "")
         return 0;
@@ -146,6 +164,8 @@
         return 0;
     if (Name == "annotate" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "annotate" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_AnyX86NoCallerSavedRegisters: {
@@ -155,17 +175,41 @@
         return 1;
     break;
   }
+  case AT_AnyX86NoCfCheck: {
+    if (Name == "nocf_check" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "nocf_check" && SyntaxUsed == 1 && Scope == "gnu")
+        return 1;
+    break;
+  }
   case AT_ArcWeakrefUnavailable: {
     if (Name == "objc_arc_weak_reference_unavailable" && SyntaxUsed == 0 && Scope == "")
         return 0;
     if (Name == "objc_arc_weak_reference_unavailable" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_arc_weak_reference_unavailable" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ArgumentWithTypeTag: {
     if (Name == "argument_with_type_tag" && SyntaxUsed == 0 && Scope == "")
         return 0;
+    if (Name == "argument_with_type_tag" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "argument_with_type_tag" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     if (Name == "pointer_with_type_tag" && SyntaxUsed == 0 && Scope == "")
+        return 3;
+    if (Name == "pointer_with_type_tag" && SyntaxUsed == 1 && Scope == "clang")
+        return 4;
+    if (Name == "pointer_with_type_tag" && SyntaxUsed == 2 && Scope == "clang")
+        return 5;
+    break;
+  }
+  case AT_Artificial: {
+    if (Name == "artificial" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "artificial" && SyntaxUsed == 1 && Scope == "gnu")
         return 1;
     break;
   }
@@ -200,6 +244,10 @@
   case AT_Availability: {
     if (Name == "availability" && SyntaxUsed == 0 && Scope == "")
         return 0;
+    if (Name == "availability" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "availability" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_Blocks: {
@@ -207,6 +255,8 @@
         return 0;
     if (Name == "blocks" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "blocks" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_CDecl: {
@@ -225,6 +275,8 @@
         return 0;
     if (Name == "cf_audited_transfer" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "cf_audited_transfer" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_CFConsumed: {
@@ -232,6 +284,8 @@
         return 0;
     if (Name == "cf_consumed" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "cf_consumed" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_CFReturnsNotRetained: {
@@ -239,6 +293,8 @@
         return 0;
     if (Name == "cf_returns_not_retained" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "cf_returns_not_retained" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_CFReturnsRetained: {
@@ -246,6 +302,8 @@
         return 0;
     if (Name == "cf_returns_retained" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "cf_returns_retained" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_CFUnknownTransfer: {
@@ -253,6 +311,30 @@
         return 0;
     if (Name == "cf_unknown_transfer" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "cf_unknown_transfer" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_CPUDispatch: {
+    if (Name == "cpu_dispatch" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "cpu_dispatch" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "cpu_dispatch" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    if (Name == "cpu_dispatch" && SyntaxUsed == 3 && Scope == "")
+        return 3;
+    break;
+  }
+  case AT_CPUSpecific: {
+    if (Name == "cpu_specific" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "cpu_specific" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "cpu_specific" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    if (Name == "cpu_specific" && SyntaxUsed == 3 && Scope == "")
+        return 3;
     break;
   }
   case AT_CUDAConstant: {
@@ -312,6 +394,15 @@
         return 1;
     break;
   }
+  case AT_Callback: {
+    if (Name == "callback" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "callback" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "callback" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
   case AT_Capability: {
     if (Name == "capability" && SyntaxUsed == 0 && Scope == "")
         return 0;
@@ -335,6 +426,11 @@
         return 0;
     if (Name == "cleanup" && SyntaxUsed == 1 && Scope == "gnu")
         return 1;
+    break;
+  }
+  case AT_CodeSeg: {
+    if (Name == "code_seg" && SyntaxUsed == 3 && Scope == "")
+        return 0;
     break;
   }
   case AT_Cold: {
@@ -395,6 +491,8 @@
         return 0;
     if (Name == "convergent" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "convergent" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_DLLExport: {
@@ -406,6 +504,9 @@
         return 2;
     break;
   }
+  case AT_DLLExportStaticLocal: {
+    break;
+  }
   case AT_DLLImport: {
     if (Name == "dllimport" && SyntaxUsed == 3 && Scope == "")
         return 0;
@@ -413,6 +514,9 @@
         return 1;
     if (Name == "dllimport" && SyntaxUsed == 1 && Scope == "gnu")
         return 2;
+    break;
+  }
+  case AT_DLLImportStaticLocal: {
     break;
   }
   case AT_Deprecated: {
@@ -445,6 +549,8 @@
         return 0;
     if (Name == "disable_tail_calls" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "disable_tail_calls" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_EmptyBases: {
@@ -462,6 +568,17 @@
         return 0;
     if (Name == "enum_extensibility" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "enum_extensibility" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_ExcludeFromExplicitInstantiation: {
+    if (Name == "exclude_from_explicit_instantiation" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "exclude_from_explicit_instantiation" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "exclude_from_explicit_instantiation" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ExclusiveTrylockFunction: {
@@ -479,6 +596,8 @@
         return 0;
     if (Name == "external_source_symbol" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "external_source_symbol" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_FallThrough: {
@@ -506,6 +625,8 @@
         return 0;
     if (Name == "flag_enum" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "flag_enum" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_Flatten: {
@@ -548,6 +669,13 @@
         return 1;
     break;
   }
+  case AT_HIPPinnedShadow: {
+    if (Name == "hip_pinned_shadow" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "__hip_pinned_shadow__" && SyntaxUsed == 3 && Scope == "")
+        return 1;
+    break;
+  }
   case AT_Hot: {
     if (Name == "hot" && SyntaxUsed == 0 && Scope == "")
         return 0;
@@ -560,6 +688,8 @@
         return 0;
     if (Name == "ibaction" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "ibaction" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_IBOutlet: {
@@ -567,6 +697,8 @@
         return 0;
     if (Name == "iboutlet" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "iboutlet" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_IBOutletCollection: {
@@ -574,6 +706,8 @@
         return 0;
     if (Name == "iboutletcollection" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "iboutletcollection" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_IFunc: {
@@ -602,6 +736,8 @@
         return 0;
     if (Name == "internal_linkage" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "internal_linkage" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_LTOVisibilityPublic: {
@@ -609,11 +745,20 @@
         return 0;
     if (Name == "lto_visibility_public" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "lto_visibility_public" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_LayoutVersion: {
     if (Name == "layout_version" && SyntaxUsed == 3 && Scope == "")
         return 0;
+    break;
+  }
+  case AT_LifetimeBound: {
+    if (Name == "lifetimebound" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "lifetimebound" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
     break;
   }
   case AT_LockReturned: {
@@ -638,6 +783,19 @@
         return 1;
     if (Name == "nounroll" && SyntaxUsed == 6 && Scope == "")
         return 2;
+    if (Name == "unroll_and_jam" && SyntaxUsed == 6 && Scope == "")
+        return 3;
+    if (Name == "nounroll_and_jam" && SyntaxUsed == 6 && Scope == "")
+        return 4;
+    break;
+  }
+  case AT_MIGServerRoutine: {
+    if (Name == "mig_server_routine" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "mig_server_routine" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "mig_server_routine" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_MSABI: {
@@ -645,6 +803,11 @@
         return 0;
     if (Name == "ms_abi" && SyntaxUsed == 1 && Scope == "gnu")
         return 1;
+    break;
+  }
+  case AT_MSAllocator: {
+    if (Name == "allocator" && SyntaxUsed == 3 && Scope == "")
+        return 0;
     break;
   }
   case AT_MSInheritance: {
@@ -689,6 +852,17 @@
         return 0;
     if (Name == "minsize" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "minsize" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_MinVectorWidth: {
+    if (Name == "min_vector_width" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "min_vector_width" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "min_vector_width" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_Mips16: {
@@ -732,6 +906,8 @@
         return 0;
     if (Name == "ns_consumed" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "ns_consumed" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_NSConsumesSelf: {
@@ -739,6 +915,8 @@
         return 0;
     if (Name == "ns_consumes_self" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "ns_consumes_self" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_NSReturnsAutoreleased: {
@@ -746,6 +924,8 @@
         return 0;
     if (Name == "ns_returns_autoreleased" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "ns_returns_autoreleased" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_NSReturnsNotRetained: {
@@ -753,6 +933,8 @@
         return 0;
     if (Name == "ns_returns_not_retained" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "ns_returns_not_retained" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_NSReturnsRetained: {
@@ -760,6 +942,8 @@
         return 0;
     if (Name == "ns_returns_retained" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "ns_returns_retained" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_Naked: {
@@ -776,6 +960,8 @@
         return 0;
     if (Name == "neon_polyvector_type" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "neon_polyvector_type" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_NeonVectorType: {
@@ -783,6 +969,8 @@
         return 0;
     if (Name == "neon_vector_type" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "neon_vector_type" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_NoAlias: {
@@ -804,11 +992,29 @@
         return 1;
     break;
   }
+  case AT_NoDeref: {
+    if (Name == "noderef" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "noderef" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "noderef" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_NoDestroy: {
+    if (Name == "no_destroy" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "no_destroy" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    break;
+  }
   case AT_NoDuplicate: {
     if (Name == "noduplicate" && SyntaxUsed == 0 && Scope == "")
         return 0;
     if (Name == "noduplicate" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "noduplicate" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_NoEscape: {
@@ -816,6 +1022,8 @@
         return 0;
     if (Name == "noescape" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "noescape" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_NoInline: {
@@ -862,6 +1070,8 @@
         return 0;
     if (Name == "no_sanitize" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "no_sanitize" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_NoSanitizeSpecific: {
@@ -881,6 +1091,17 @@
         return 6;
     if (Name == "no_sanitize_memory" && SyntaxUsed == 1 && Scope == "clang")
         return 7;
+    if (Name == "no_sanitize_memory" && SyntaxUsed == 2 && Scope == "clang")
+        return 8;
+    break;
+  }
+  case AT_NoSpeculativeLoadHardening: {
+    if (Name == "no_speculative_load_hardening" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "no_speculative_load_hardening" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "no_speculative_load_hardening" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_NoSplitStack: {
@@ -890,11 +1111,22 @@
         return 1;
     break;
   }
+  case AT_NoStackProtector: {
+    if (Name == "no_stack_protector" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "no_stack_protector" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "no_stack_protector" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
   case AT_NoThreadSafetyAnalysis: {
     if (Name == "no_thread_safety_analysis" && SyntaxUsed == 0 && Scope == "")
         return 0;
     if (Name == "no_thread_safety_analysis" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "no_thread_safety_analysis" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_NoThrow: {
@@ -904,6 +1136,11 @@
         return 1;
     if (Name == "nothrow" && SyntaxUsed == 3 && Scope == "")
         return 2;
+    break;
+  }
+  case AT_NoUniqueAddress: {
+    if (Name == "no_unique_address" && SyntaxUsed == 1 && Scope == "")
+        return 0;
     break;
   }
   case AT_NonNull: {
@@ -918,6 +1155,62 @@
         return 0;
     if (Name == "not_tail_called" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "not_tail_called" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_OSConsumed: {
+    if (Name == "os_consumed" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "os_consumed" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "os_consumed" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_OSConsumesThis: {
+    if (Name == "os_consumes_this" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "os_consumes_this" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "os_consumes_this" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_OSReturnsNotRetained: {
+    if (Name == "os_returns_not_retained" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "os_returns_not_retained" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "os_returns_not_retained" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_OSReturnsRetained: {
+    if (Name == "os_returns_retained" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "os_returns_retained" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "os_returns_retained" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_OSReturnsRetainedOnNonZero: {
+    if (Name == "os_returns_retained_on_non_zero" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "os_returns_retained_on_non_zero" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "os_returns_retained_on_non_zero" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_OSReturnsRetainedOnZero: {
+    if (Name == "os_returns_retained_on_zero" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "os_returns_retained_on_zero" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "os_returns_retained_on_zero" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCBoxable: {
@@ -925,6 +1218,8 @@
         return 0;
     if (Name == "objc_boxable" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_boxable" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCBridge: {
@@ -932,6 +1227,8 @@
         return 0;
     if (Name == "objc_bridge" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_bridge" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCBridgeMutable: {
@@ -939,11 +1236,26 @@
         return 0;
     if (Name == "objc_bridge_mutable" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_bridge_mutable" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCBridgeRelated: {
     if (Name == "objc_bridge_related" && SyntaxUsed == 0 && Scope == "")
         return 0;
+    if (Name == "objc_bridge_related" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "objc_bridge_related" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_ObjCClassStub: {
+    if (Name == "objc_class_stub" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "objc_class_stub" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "objc_class_stub" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCDesignatedInitializer: {
@@ -951,6 +1263,8 @@
         return 0;
     if (Name == "objc_designated_initializer" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_designated_initializer" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCException: {
@@ -958,6 +1272,8 @@
         return 0;
     if (Name == "objc_exception" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_exception" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCExplicitProtocolImpl: {
@@ -965,6 +1281,17 @@
         return 0;
     if (Name == "objc_protocol_requires_explicit_implementation" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_protocol_requires_explicit_implementation" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_ObjCExternallyRetained: {
+    if (Name == "objc_externally_retained" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "objc_externally_retained" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "objc_externally_retained" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCGC: {
@@ -972,6 +1299,8 @@
         return 0;
     if (Name == "objc_gc" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_gc" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCIndependentClass: {
@@ -979,6 +1308,13 @@
         return 0;
     if (Name == "objc_independent_class" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_independent_class" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_ObjCInertUnsafeUnretained: {
+    if (Name == "__unsafe_unretained" && SyntaxUsed == 5 && Scope == "")
+        return 0;
     break;
   }
   case AT_ObjCKindOf: {
@@ -991,6 +1327,8 @@
         return 0;
     if (Name == "objc_method_family" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_method_family" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCNSObject: {
@@ -998,6 +1336,17 @@
         return 0;
     if (Name == "NSObject" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "NSObject" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_ObjCNonLazyClass: {
+    if (Name == "objc_nonlazy_class" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "objc_nonlazy_class" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "objc_nonlazy_class" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCOwnership: {
@@ -1005,6 +1354,8 @@
         return 0;
     if (Name == "objc_ownership" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_ownership" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCPreciseLifetime: {
@@ -1012,6 +1363,8 @@
         return 0;
     if (Name == "objc_precise_lifetime" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_precise_lifetime" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCRequiresPropertyDefs: {
@@ -1019,6 +1372,8 @@
         return 0;
     if (Name == "objc_requires_property_definitions" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_requires_property_definitions" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCRequiresSuper: {
@@ -1026,6 +1381,8 @@
         return 0;
     if (Name == "objc_requires_super" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_requires_super" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCReturnsInnerPointer: {
@@ -1033,6 +1390,8 @@
         return 0;
     if (Name == "objc_returns_inner_pointer" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_returns_inner_pointer" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCRootClass: {
@@ -1040,6 +1399,8 @@
         return 0;
     if (Name == "objc_root_class" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_root_class" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCRuntimeName: {
@@ -1047,6 +1408,8 @@
         return 0;
     if (Name == "objc_runtime_name" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_runtime_name" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCRuntimeVisible: {
@@ -1054,6 +1417,8 @@
         return 0;
     if (Name == "objc_runtime_visible" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_runtime_visible" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_ObjCSubclassingRestricted: {
@@ -1061,6 +1426,8 @@
         return 0;
     if (Name == "objc_subclassing_restricted" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "objc_subclassing_restricted" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_OpenCLAccess: {
@@ -1140,6 +1507,8 @@
         return 0;
     if (Name == "optnone" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "optnone" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_Overloadable: {
@@ -1147,6 +1516,8 @@
         return 0;
     if (Name == "overloadable" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "overloadable" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_Ownership: {
@@ -1154,14 +1525,20 @@
         return 0;
     if (Name == "ownership_holds" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
-    if (Name == "ownership_returns" && SyntaxUsed == 0 && Scope == "")
+    if (Name == "ownership_holds" && SyntaxUsed == 2 && Scope == "clang")
         return 2;
-    if (Name == "ownership_returns" && SyntaxUsed == 1 && Scope == "clang")
+    if (Name == "ownership_returns" && SyntaxUsed == 0 && Scope == "")
         return 3;
-    if (Name == "ownership_takes" && SyntaxUsed == 0 && Scope == "")
+    if (Name == "ownership_returns" && SyntaxUsed == 1 && Scope == "clang")
         return 4;
-    if (Name == "ownership_takes" && SyntaxUsed == 1 && Scope == "clang")
+    if (Name == "ownership_returns" && SyntaxUsed == 2 && Scope == "clang")
         return 5;
+    if (Name == "ownership_takes" && SyntaxUsed == 0 && Scope == "")
+        return 6;
+    if (Name == "ownership_takes" && SyntaxUsed == 1 && Scope == "clang")
+        return 7;
+    if (Name == "ownership_takes" && SyntaxUsed == 2 && Scope == "clang")
+        return 8;
     break;
   }
   case AT_Packed: {
@@ -1183,10 +1560,12 @@
         return 0;
     if (Name == "pascal" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
-    if (Name == "__pascal" && SyntaxUsed == 5 && Scope == "")
+    if (Name == "pascal" && SyntaxUsed == 2 && Scope == "clang")
         return 2;
-    if (Name == "_pascal" && SyntaxUsed == 5 && Scope == "")
+    if (Name == "__pascal" && SyntaxUsed == 5 && Scope == "")
         return 3;
+    if (Name == "_pascal" && SyntaxUsed == 5 && Scope == "")
+        return 4;
     break;
   }
   case AT_PassObjectSize: {
@@ -1194,6 +1573,14 @@
         return 0;
     if (Name == "pass_object_size" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "pass_object_size" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    if (Name == "pass_dynamic_object_size" && SyntaxUsed == 0 && Scope == "")
+        return 3;
+    if (Name == "pass_dynamic_object_size" && SyntaxUsed == 1 && Scope == "clang")
+        return 4;
+    if (Name == "pass_dynamic_object_size" && SyntaxUsed == 2 && Scope == "clang")
+        return 5;
     break;
   }
   case AT_Pcs: {
@@ -1220,6 +1607,8 @@
         return 0;
     if (Name == "preserve_all" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "preserve_all" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_PreserveMost: {
@@ -1227,6 +1616,8 @@
         return 0;
     if (Name == "preserve_most" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "preserve_most" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_PtGuardedBy: {
@@ -1271,6 +1662,13 @@
     if (Name == "regparm" && SyntaxUsed == 0 && Scope == "")
         return 0;
     if (Name == "regparm" && SyntaxUsed == 1 && Scope == "gnu")
+        return 1;
+    break;
+  }
+  case AT_Reinitializes: {
+    if (Name == "reinitializes" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "reinitializes" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
     break;
   }
@@ -1408,6 +1806,15 @@
         return 0;
     break;
   }
+  case AT_SpeculativeLoadHardening: {
+    if (Name == "speculative_load_hardening" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "speculative_load_hardening" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "speculative_load_hardening" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
   case AT_StdCall: {
     if (Name == "stdcall" && SyntaxUsed == 0 && Scope == "")
         return 0;
@@ -1429,6 +1836,8 @@
         return 0;
     if (Name == "swiftcall" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "swiftcall" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_SwiftContext: {
@@ -1436,6 +1845,8 @@
         return 0;
     if (Name == "swift_context" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "swift_context" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_SwiftErrorResult: {
@@ -1443,6 +1854,8 @@
         return 0;
     if (Name == "swift_error_result" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "swift_error_result" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_SwiftIndirectResult: {
@@ -1450,6 +1863,8 @@
         return 0;
     if (Name == "swift_indirect_result" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "swift_indirect_result" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_SysVABI: {
@@ -1503,6 +1918,13 @@
         return 1;
     break;
   }
+  case AT_TrivialABI: {
+    if (Name == "trivial_abi" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "trivial_abi" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    break;
+  }
   case AT_TryAcquireCapability: {
     if (Name == "try_acquire_capability" && SyntaxUsed == 0 && Scope == "")
         return 0;
@@ -1532,6 +1954,10 @@
   case AT_TypeTagForDatatype: {
     if (Name == "type_tag_for_datatype" && SyntaxUsed == 0 && Scope == "")
         return 0;
+    if (Name == "type_tag_for_datatype" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "type_tag_for_datatype" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_TypeVisibility: {
@@ -1539,6 +1965,8 @@
         return 0;
     if (Name == "type_visibility" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "type_visibility" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_UPtr: {
@@ -1550,6 +1978,15 @@
     if (Name == "unavailable" && SyntaxUsed == 0 && Scope == "")
         return 0;
     if (Name == "unavailable" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "unavailable" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_Uninitialized: {
+    if (Name == "uninitialized" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "uninitialized" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
     break;
   }
@@ -1595,10 +2032,12 @@
         return 0;
     if (Name == "vectorcall" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
-    if (Name == "__vectorcall" && SyntaxUsed == 5 && Scope == "")
+    if (Name == "vectorcall" && SyntaxUsed == 2 && Scope == "clang")
         return 2;
-    if (Name == "_vectorcall" && SyntaxUsed == 5 && Scope == "")
+    if (Name == "__vectorcall" && SyntaxUsed == 5 && Scope == "")
         return 3;
+    if (Name == "_vectorcall" && SyntaxUsed == 5 && Scope == "")
+        return 4;
     break;
   }
   case AT_VectorSize: {
@@ -1647,6 +2086,8 @@
         return 0;
     if (Name == "weak_import" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "weak_import" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_WeakRef: {
@@ -1654,6 +2095,24 @@
         return 0;
     if (Name == "weakref" && SyntaxUsed == 1 && Scope == "gnu")
         return 1;
+    break;
+  }
+  case AT_WebAssemblyImportModule: {
+    if (Name == "import_module" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "import_module" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "import_module" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
+    break;
+  }
+  case AT_WebAssemblyImportName: {
+    if (Name == "import_name" && SyntaxUsed == 0 && Scope == "")
+        return 0;
+    if (Name == "import_name" && SyntaxUsed == 1 && Scope == "clang")
+        return 1;
+    if (Name == "import_name" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   case AT_WorkGroupSizeHint: {
@@ -1673,10 +2132,14 @@
         return 0;
     if (Name == "xray_always_instrument" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
-    if (Name == "xray_never_instrument" && SyntaxUsed == 0 && Scope == "")
+    if (Name == "xray_always_instrument" && SyntaxUsed == 2 && Scope == "clang")
         return 2;
-    if (Name == "xray_never_instrument" && SyntaxUsed == 1 && Scope == "clang")
+    if (Name == "xray_never_instrument" && SyntaxUsed == 0 && Scope == "")
         return 3;
+    if (Name == "xray_never_instrument" && SyntaxUsed == 1 && Scope == "clang")
+        return 4;
+    if (Name == "xray_never_instrument" && SyntaxUsed == 2 && Scope == "clang")
+        return 5;
     break;
   }
   case AT_XRayLogArgs: {
@@ -1684,6 +2147,8 @@
         return 0;
     if (Name == "xray_log_args" && SyntaxUsed == 1 && Scope == "clang")
         return 1;
+    if (Name == "xray_log_args" && SyntaxUsed == 2 && Scope == "clang")
+        return 2;
     break;
   }
   }

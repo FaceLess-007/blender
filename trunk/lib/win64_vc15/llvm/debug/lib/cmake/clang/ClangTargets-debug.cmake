@@ -195,15 +195,25 @@ set_target_properties(clangToolingCore PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS clangToolingCore )
 list(APPEND _IMPORT_CHECK_FILES_FOR_clangToolingCore "${_IMPORT_PREFIX}/lib/clangToolingCore.lib" )
 
-# Import target "clangToolingRefactor" for configuration "Debug"
-set_property(TARGET clangToolingRefactor APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
-set_target_properties(clangToolingRefactor PROPERTIES
+# Import target "clangToolingInclusions" for configuration "Debug"
+set_property(TARGET clangToolingInclusions APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(clangToolingInclusions PROPERTIES
   IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
-  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/clangToolingRefactor.lib"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/clangToolingInclusions.lib"
   )
 
-list(APPEND _IMPORT_CHECK_TARGETS clangToolingRefactor )
-list(APPEND _IMPORT_CHECK_FILES_FOR_clangToolingRefactor "${_IMPORT_PREFIX}/lib/clangToolingRefactor.lib" )
+list(APPEND _IMPORT_CHECK_TARGETS clangToolingInclusions )
+list(APPEND _IMPORT_CHECK_FILES_FOR_clangToolingInclusions "${_IMPORT_PREFIX}/lib/clangToolingInclusions.lib" )
+
+# Import target "clangToolingRefactoring" for configuration "Debug"
+set_property(TARGET clangToolingRefactoring APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(clangToolingRefactoring PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/clangToolingRefactoring.lib"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS clangToolingRefactoring )
+list(APPEND _IMPORT_CHECK_FILES_FOR_clangToolingRefactoring "${_IMPORT_PREFIX}/lib/clangToolingRefactoring.lib" )
 
 # Import target "clangToolingASTDiff" for configuration "Debug"
 set_property(TARGET clangToolingASTDiff APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
@@ -215,6 +225,26 @@ set_target_properties(clangToolingASTDiff PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS clangToolingASTDiff )
 list(APPEND _IMPORT_CHECK_FILES_FOR_clangToolingASTDiff "${_IMPORT_PREFIX}/lib/clangToolingASTDiff.lib" )
 
+# Import target "clangToolingSyntax" for configuration "Debug"
+set_property(TARGET clangToolingSyntax APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(clangToolingSyntax PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/clangToolingSyntax.lib"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS clangToolingSyntax )
+list(APPEND _IMPORT_CHECK_FILES_FOR_clangToolingSyntax "${_IMPORT_PREFIX}/lib/clangToolingSyntax.lib" )
+
+# Import target "clangDependencyScanning" for configuration "Debug"
+set_property(TARGET clangDependencyScanning APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(clangDependencyScanning PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/clangDependencyScanning.lib"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS clangDependencyScanning )
+list(APPEND _IMPORT_CHECK_FILES_FOR_clangDependencyScanning "${_IMPORT_PREFIX}/lib/clangDependencyScanning.lib" )
+
 # Import target "clangTooling" for configuration "Debug"
 set_property(TARGET clangTooling APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(clangTooling PROPERTIES
@@ -224,6 +254,16 @@ set_target_properties(clangTooling PROPERTIES
 
 list(APPEND _IMPORT_CHECK_TARGETS clangTooling )
 list(APPEND _IMPORT_CHECK_FILES_FOR_clangTooling "${_IMPORT_PREFIX}/lib/clangTooling.lib" )
+
+# Import target "clangDirectoryWatcher" for configuration "Debug"
+set_property(TARGET clangDirectoryWatcher APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(clangDirectoryWatcher PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/clangDirectoryWatcher.lib"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS clangDirectoryWatcher )
+list(APPEND _IMPORT_CHECK_FILES_FOR_clangDirectoryWatcher "${_IMPORT_PREFIX}/lib/clangDirectoryWatcher.lib" )
 
 # Import target "clangIndex" for configuration "Debug"
 set_property(TARGET clangIndex APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
@@ -303,6 +343,16 @@ set_target_properties(clangHandleCXX PROPERTIES
 list(APPEND _IMPORT_CHECK_TARGETS clangHandleCXX )
 list(APPEND _IMPORT_CHECK_FILES_FOR_clangHandleCXX "${_IMPORT_PREFIX}/lib/clangHandleCXX.lib" )
 
+# Import target "clangHandleLLVM" for configuration "Debug"
+set_property(TARGET clangHandleLLVM APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(clangHandleLLVM PROPERTIES
+  IMPORTED_LINK_INTERFACE_LANGUAGES_DEBUG "CXX"
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/lib/clangHandleLLVM.lib"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS clangHandleLLVM )
+list(APPEND _IMPORT_CHECK_FILES_FOR_clangHandleLLVM "${_IMPORT_PREFIX}/lib/clangHandleLLVM.lib" )
+
 # Import target "clang-import-test" for configuration "Debug"
 set_property(TARGET clang-import-test APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
 set_target_properties(clang-import-test PROPERTIES
@@ -311,6 +361,15 @@ set_target_properties(clang-import-test PROPERTIES
 
 list(APPEND _IMPORT_CHECK_TARGETS clang-import-test )
 list(APPEND _IMPORT_CHECK_FILES_FOR_clang-import-test "${_IMPORT_PREFIX}/bin/clang-import-test.exe" )
+
+# Import target "clang-scan-deps" for configuration "Debug"
+set_property(TARGET clang-scan-deps APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)
+set_target_properties(clang-scan-deps PROPERTIES
+  IMPORTED_LOCATION_DEBUG "${_IMPORT_PREFIX}/bin/clang-scan-deps.exe"
+  )
+
+list(APPEND _IMPORT_CHECK_TARGETS clang-scan-deps )
+list(APPEND _IMPORT_CHECK_FILES_FOR_clang-scan-deps "${_IMPORT_PREFIX}/bin/clang-scan-deps.exe" )
 
 # Import target "clang-rename" for configuration "Debug"
 set_property(TARGET clang-rename APPEND PROPERTY IMPORTED_CONFIGURATIONS DEBUG)

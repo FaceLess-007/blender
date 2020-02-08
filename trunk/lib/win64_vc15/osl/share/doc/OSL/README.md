@@ -9,6 +9,7 @@ Open Shading Language
 Build status:
 
 [![Build Status](https://travis-ci.org/imageworks/OpenShadingLanguage.svg?branch=master)](https://travis-ci.org/imageworks/OpenShadingLanguage)
+[![Appveyor status](https://ci.appveyor.com/api/projects/status/github/imageworks/openshadinglanguage?svg=true&branch=master)](https://ci.appveyor.com/project/lgritz/openshadinglanguage)
 
 **Table of contents**
 
@@ -277,8 +278,8 @@ Films using OSL (grouped by year of release date):
   Kingsglaive: Final Fantasy XV,
   Storks,
   Miss Peregrine's Home for Peculiar Children,
-  Assassin's Creed,
-  Fantastic Beasts and Where to Find Them
+  Fantastic Beasts and Where to Find Them,
+  Assassin's Creed
 * **(2017)**
   Lego Batman,
   The Great Wall,
@@ -299,18 +300,50 @@ Films using OSL (grouped by year of release date):
   The Emoji Movie,
   Detroit,
   Kingsman: The Golden Circle,
-  Lega Ninjago Movie,
+  Lego Ninjago Movie,
   Blade Runner 2049,
   Geostorm,
   Coco,
   Justice League,
   Thor: Ragnarok
-* **(2018) / upcoming**
+* **(2018)**
   Peter Rabbit,
   Black Panther,
   Annnihilation,
   Red Sparrow,
-  Pacific Rom Uprising
+  Pacific Rim Uprising,
+  Avengers Infinity War,
+  Deadpool 2,
+  Incredibles 2,
+  Jurassic World: Fallen Kingdom,
+  Hotel Transylvania 3: Summer Vacation,
+  Ant Man and the Wasp,
+  Skyscraper,
+  Mission Impossible: Fallout,
+  The Meg,
+  Kin,
+  Smallfoot,
+  Alpha,
+  Venom,
+  First Man,
+  Bad Times at the El Royale,
+  Fantastic Beasts: The Crimes of Grindelwald,
+  Bohemian Rhapsody,
+  Holmes and Watson,
+  Spider-Man: Into the Spider-Verse
+* **(2019 / upcoming)**
+  The Kid Who Would Be King,
+  Alita: Battle Angel,
+  Lego Movie 2,
+  Lucky 13,
+  Captain Marvel,
+  Avengers: Endgame,
+  Pokémon Detective Pikachu,
+  Godzilla: King of Monsters,
+  Rim of the World,
+  Men in Black International,
+  Toy Story 4,
+  Spider-Man: Far From Home,
   ...
 
 

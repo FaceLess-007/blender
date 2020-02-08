@@ -60,6 +60,7 @@
     color  name (color x) BUILTIN;              \
     float  name (float x) BUILTIN;
 
+// Declare name (T,T) for T in {triples,float}
 #define PERCOMP2(name)                          \
     normal name (normal x, normal y) BUILTIN;   \
     vector name (vector x, vector y) BUILTIN;   \
@@ -67,13 +68,12 @@
     color  name (color x, color y) BUILTIN;     \
     float  name (float x, float y) BUILTIN;
 
+// Declare name(T,float) for T in {triples}
 #define PERCOMP2F(name)                         \
     normal name (normal x, float y) BUILTIN;    \
     vector name (vector x, float y) BUILTIN;    \
     point  name (point x, float y) BUILTIN;     \
-    color  name (color x, float y) BUILTIN;     \
-    float  name (float x, float y) BUILTIN;
-
+    color  name (color x, float y) BUILTIN;
 
 // Basic math
 normal degrees (normal x) { return x*(180.0/M_PI); }
@@ -96,8 +96,17 @@ PERCOMP2 (atan2)
 PERCOMP1 (cosh)
 PERCOMP1 (sinh)
 PERCOMP1 (tanh)
-PERCOMP2F (pow)
-PERCOMP2 (pow)
+
+normal pow (normal x, normal y) BUILTIN;
+vector pow (vector x, vector y) BUILTIN;
+point  pow (point x, point y) BUILTIN;
+color  pow (color x, color y) BUILTIN;
+normal pow (normal x, float y) BUILTIN;
+vector pow (vector x, float y) BUILTIN;
+point  pow (point x, float y) BUILTIN;
+color  pow (color x, float y) BUILTIN;
+float  pow (float x, float y) BUILTIN;
+
 PERCOMP1 (exp)
 PERCOMP1 (exp2)
 PERCOMP1 (expm1)
@@ -122,8 +131,17 @@ PERCOMP1 (floor)
 PERCOMP1 (ceil)
 PERCOMP1 (round)
 PERCOMP1 (trunc)
-PERCOMP2 (fmod)
-PERCOMP2F (fmod)
+
+normal fmod (normal x, normal y) BUILTIN;
+vector fmod (vector x, vector y) BUILTIN;
+point  fmod (point x, point y) BUILTIN;
+color  fmod (color x, color y) BUILTIN;
+normal fmod (normal x, float y) BUILTIN;
+vector fmod (vector x, float y) BUILTIN;
+point  fmod (point x, float y) BUILTIN;
+color  fmod (color x, float y) BUILTIN;
+float  fmod (float x, float y) BUILTIN;
+
 int    mod (int    a, int    b) { return a - b*(int)floor(a/b); }
 point  mod (point  a, point  b) { return a - b*floor(a/b); }
 vector mod (vector a, vector b) { return a - b*floor(a/b); }
@@ -292,6 +310,11 @@ point rotate (point p, float angle, point a, point b)
     return transform (M, p-a) + a;
 }
 
+point rotate (point p, float angle, vector axis)
+{
+    return rotate (p, angle, point(0), axis);
+}
+
 
 
 // Color functions
@@ -320,17 +343,17 @@ normal step (normal edge, normal x) BUILTIN;
 float step (float edge, float x) BUILTIN;
 float smoothstep (float edge0, float edge1, float x) BUILTIN;
 
-color smoothstep (color edge0, color edge1, color in)
+color smoothstep (color edge0, color edge1, color x)
 {
-    return color (smoothstep(edge0[0], edge1[0], in[0]),
-                  smoothstep(edge0[1], edge1[1], in[1]),
-                  smoothstep(edge0[2], edge1[2], in[2]));
+    return color (smoothstep(edge0[0], edge1[0], x[0]),
+                  smoothstep(edge0[1], edge1[1], x[1]),
+                  smoothstep(edge0[2], edge1[2], x[2]));
 }
-vector smoothstep (vector edge0, vector edge1, vector in)
+vector smoothstep (vector edge0, vector edge1, vector x)
 {
-    return vector (smoothstep(edge0[0], edge1[0], in[0]),
-                   smoothstep(edge0[1], edge1[1], in[1]),
-                   smoothstep(edge0[2], edge1[2], in[2]));
+    return vector (smoothstep(edge0[0], edge1[0], x[0]),
+                   smoothstep(edge0[1], edge1[1], x[1]),
+                   smoothstep(edge0[2], edge1[2], x[2]));
 }
 
 float linearstep (float edge0, float edge1, float x) {
@@ -342,6 +365,18 @@ float linearstep (float edge0, float edge1, float x) {
         result = step (edge0, x);
     }
     return result;
+}
+color linearstep (color edge0, color edge1, color x)
+{
+    return color (linearstep(edge0[0], edge1[0], x[0]),
+                  linearstep(edge0[1], edge1[1], x[1]),
+                  linearstep(edge0[2], edge1[2], x[2]));
+}
+vector linearstep (vector edge0, vector edge1, vector x)
+{
+    return vector (linearstep(edge0[0], edge1[0], x[0]),
+                   linearstep(edge0[1], edge1[1], x[1]),
+                   linearstep(edge0[2], edge1[2], x[2]));
 }
 
 float smooth_linearstep (float edge0, float edge1, float x_, float eps_) {
@@ -360,6 +395,19 @@ float smooth_linearstep (float edge0, float edge1, float x_, float eps_) {
         result = step (edge0, x_);
     }
     return result;
+}
+
+color smooth_linearstep (color edge0, color edge1, color x, color eps)
+{
+    return color (smooth_linearstep(edge0[0], edge1[0], x[0], eps[0]),
+                  smooth_linearstep(edge0[1], edge1[1], x[1], eps[1]),
+                  smooth_linearstep(edge0[2], edge1[2], x[2], eps[2]));
+}
+vector smooth_linearstep (vector edge0, vector edge1, vector x, vector eps)
+{
+    return vector (smooth_linearstep(edge0[0], edge1[0], x[0], eps[0]),
+                   smooth_linearstep(edge0[1], edge1[1], x[1], eps[1]),
+                   smooth_linearstep(edge0[2], edge1[2], x[2], eps[2]));
 }
 
 float aastep (float edge, float s, float dedge, float ds) {

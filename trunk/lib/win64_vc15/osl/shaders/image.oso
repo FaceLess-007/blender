@@ -1,5 +1,5 @@
 OpenShadingLanguage 1.00
-# Compiled by oslc 1.9.9
+# Compiled by oslc 1.10.9
 # options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/image.oso
 shader image	%meta{string,help,"Texture lookup"} 
 param	string	filename	""		%meta{string,help,"Texture filename"}  %read{2,2} %write{2147483647,-1}
@@ -17,15 +17,15 @@ const	string	$const2	"tblur"		%read{2,2} %write{2147483647,-1}
 const	string	$const3	"swrap"		%read{2,2} %write{2147483647,-1}
 const	string	$const4	"twrap"		%read{2,2} %write{2147483647,-1}
 code s
-# E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/image.osl:37
-#         [[  string help = "s coordinate for the lookup" ]],
-	assign		s u 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/image.osl"} %line{37} %argrw{"wr"}
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/image.osl:36
+#     float s = u
+	assign		s u 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/image.osl"} %line{36} %argrw{"wr"}
 code t
-# E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/image.osl:39
-#         [[  string help = "t coordinate for the lookup" ]],
-	assign		t v 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/image.osl"} %line{39} %argrw{"wr"}
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/image.osl:38
+#     float t = v
+	assign		t v 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/image.osl"} %line{38} %argrw{"wr"}
 code ___main___
-# E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/image.osl:59
-#                     "swrap", swrap, "twrap", twrap);
-	texture		Cout filename s t $const1 sblur $const2 tblur $const3 swrap $const4 twrap 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/image.osl"} %line{59} %argrw{"wrrrrrrrrrrr"} %argderivs{2,3}
+# E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/image.osl:58
+#     Cout = texture (filename, s, t, "sblur", sblur, "tblur", tblur,
+	texture		Cout filename s t $const1 sblur $const2 tblur $const3 swrap $const4 twrap 	%filename{"E:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders/image.osl"} %line{58} %argrw{"wrrrrrrrrrrr"} %argderivs{2,3}
 	end
