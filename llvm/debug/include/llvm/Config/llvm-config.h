@@ -1,9 +1,9 @@
 /*===------- llvm/Config/llvm-config.h - llvm configuration -------*- C -*-===*/
 /*                                                                            */
-/*                     The LLVM Compiler Infrastructure                       */
-/*                                                                            */
-/* This file is distributed under the University of Illinois Open Source      */
-/* License. See LICENSE.TXT for details.                                      */
+/* Part of the LLVM Project, under the Apache License v2.0 with LLVM          */
+/* Exceptions.                                                                */
+/* See https://llvm.org/LICENSE.txt for license information.                  */
+/* SPDX-License-Identifier: Apache-2.0 WITH LLVM-exception                    */
 /*                                                                            */
 /*===----------------------------------------------------------------------===*/
 
@@ -21,7 +21,7 @@
 /* #undef LINK_POLLY_INTO_TOOLS */
 
 /* Target triple LLVM will generate code for by default */
-#define LLVM_DEFAULT_TARGET_TRIPLE "x86_64-pc-win32"
+#define LLVM_DEFAULT_TARGET_TRIPLE "x86_64-pc-windows-msvc"
 
 /* Define if threads enabled */
 #define LLVM_ENABLE_THREADS 1
@@ -30,7 +30,7 @@
 #define LLVM_HAS_ATOMICS 1
 
 /* Host triple LLVM will be executed on */
-#define LLVM_HOST_TRIPLE "x86_64-pc-win32"
+#define LLVM_HOST_TRIPLE "x86_64-pc-windows-msvc"
 
 /* LLVM architecture name for the native architecture, if available */
 #define LLVM_NATIVE_ARCH X86
@@ -56,17 +56,17 @@
 /* Define if this is Unixish platform */
 /* #undef LLVM_ON_UNIX */
 
-/* Define if this is Win32ish platform */
-#define LLVM_ON_WIN32 1
-
 /* Define if we have the Intel JIT API runtime support library */
 #define LLVM_USE_INTEL_JITEVENTS 0
 
 /* Define if we have the oprofile JIT-support library */
 #define LLVM_USE_OPROFILE 0
 
+/* Define if we have the perf JIT-support library */
+#define LLVM_USE_PERF 0
+
 /* Major version of the LLVM API */
-#define LLVM_VERSION_MAJOR 6
+#define LLVM_VERSION_MAJOR 9
 
 /* Minor version of the LLVM API */
 #define LLVM_VERSION_MINOR 0
@@ -75,6 +75,11 @@
 #define LLVM_VERSION_PATCH 1
 
 /* LLVM version string */
-#define LLVM_VERSION_STRING "6.0.1"
+#define LLVM_VERSION_STRING "9.0.1"
+
+/* Whether LLVM records statistics for use with GetStatistics(),
+ * PrintStatistics() or PrintStatisticsJSON()
+ */
+#define LLVM_FORCE_ENABLE_STATS 0
 
 #endif

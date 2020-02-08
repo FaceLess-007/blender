@@ -1,5 +1,5 @@
 OpenShadingLanguage 1.00
-# Compiled by oslc 1.9.9
+# Compiled by oslc 1.10.9
 # options: -q -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -IE:/db18/build/S/VS1564R/build/osl/src/external_osl/src/shaders -o E:/db18/build/S/VS1564R/build/osl/src/external_osl-build/src/shaders/matte.oso
 surface matte	%meta{string,help,"Lambertian diffuse material"} 
 param	float	Kd	1		%meta{string,help,"Diffuse scaling"} %meta{float,min,0} %meta{float,max,1}  %read{1,1} %write{2147483647,-1}
