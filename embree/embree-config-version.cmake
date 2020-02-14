@@ -1,5 +1,5 @@
 ## ======================================================================== ##
-## Copyright 2009-2018 Intel Corporation                                    ##
+## Copyright 2009-2020 Intel Corporation                                    ##
 ##                                                                          ##
 ## Licensed under the Apache License, Version 2.0 (the "License");          ##
 ## you may not use this file except in compliance with the License.         ##
@@ -14,13 +14,13 @@
 ## limitations under the License.                                           ##
 ## ======================================================================== ##
 
-SET(PACKAGE_VERSION 3.2.4)
+SET(PACKAGE_VERSION 3.8.0)
 
 IF (${PACKAGE_FIND_VERSION_MAJOR} EQUAL 3)
-  IF (${PACKAGE_FIND_VERSION} VERSION_LESS 3.2.4)
+  IF (${PACKAGE_FIND_VERSION} VERSION_LESS 3.8.0)
     SET(PACKAGE_VERSION_COMPATIBLE 1)  
   ENDIF()
-  IF (${PACKAGE_FIND_VERSION} VERSION_EQUAL 3.2.4)
+  IF (${PACKAGE_FIND_VERSION} VERSION_EQUAL 3.8.0)
     SET(PACKAGE_VERSION_EXACT 1)  
   ENDIF()
 ELSE()
