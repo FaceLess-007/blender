@@ -1,5 +1,5 @@
 ## ======================================================================== ##
-## Copyright 2009-2018 Intel Corporation                                    ##
+## Copyright 2009-2020 Intel Corporation                                    ##
 ##                                                                          ##
 ## Licensed under the Apache License, Version 2.0 (the "License");          ##
 ## you may not use this file except in compliance with the License.         ##
@@ -23,10 +23,10 @@ SET(EMBREE_LIBRARIES ${EMBREE_LIBRARY})
 
 MARK_AS_ADVANCED(embree_DIR)
 
-SET(EMBREE_VERSION 3.2.4)
+SET(EMBREE_VERSION 3.8.0)
 SET(EMBREE_VERSION_MAJOR 3)
-SET(EMBREE_VERSION_MINOR 2)
-SET(EMBREE_VERSION_PATCH 4)
+SET(EMBREE_VERSION_MINOR 8)
+SET(EMBREE_VERSION_PATCH 0)
 SET(EMBREE_VERSION_NOTE "")
 
 SET(EMBREE_MAX_ISA AVX2)
@@ -54,4 +54,15 @@ SET(EMBREE_GEOMETRY_QUAD ON)
 SET(EMBREE_GEOMETRY_CURVE ON)
 SET(EMBREE_GEOMETRY_SUBDIVISION ON)
 SET(EMBREE_GEOMETRY_USER ON)
+SET(EMBREE_GEOMETRY_POINT ON)
+
 SET(EMBREE_RAY_PACKETS ON)
+SET(EMBREE_MAX_INSTANCE_LEVEL_COUNT 1)
+
+IF(EMBREE_STATIC_LIB)
+  FILE(GLOB CONFIG_FILES "${EMBREE_ROOT_DIR}/./*-targets.cmake")
+  FOREACH(f ${CONFIG_FILES})
+    INCLUDE(${f})
+  ENDFOREACH()
+  LINK_DIRECTORIES(${EMBREE_ROOT_DIR}/lib)
+ENDIF()
