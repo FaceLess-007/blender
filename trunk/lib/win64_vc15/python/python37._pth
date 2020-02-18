@@ -1,7 +1,0 @@
-Lib
-Lib/site-packages
-DLLs
-.
-
-# Uncomment to run site.main() automatically
-#import site
